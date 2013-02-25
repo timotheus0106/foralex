@@ -21,11 +21,11 @@ define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/wordpress-core');
 define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME']);
 define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content');
 define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content');
-//define('WP_DEFAULT_THEME', 'mytheme');
+define('WP_DEFAULT_THEME', 'mbi-theme');
 
 
-if(file_exists(dirname(__FILE__) . '/local-config.php' )){
-    include(dirname(__FILE__). '/local-config.php');
+if(file_exists(dirname(__FILE__) . '/wp-local-config.php' )){
+    include(dirname(__FILE__). '/wp-local-config.php');
     define('WP_LOCAL_DEV', true);
 }else{
     define('WP_LOCAL_DEV', false);
