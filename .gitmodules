@@ -1,6 +1,3 @@
 [submodule "wordpress-core"]
 	path = wordpress-core
 	url = git://github.com/WordPress/WordPress.git
-[submodule "wp-content/themes/mbi-theme"]
-	path = wp-content/themes/mbi-theme
-	url = git@github.com:MarioSo/wp_dev-theme.git
