@@ -14,20 +14,20 @@
  * @package WordPress
  */
 
-// ** MySQL settings - You can get this info from your web host ** //
-/** The name of the database for WordPress */
+if(file_exists(dirname(__FILE__) . '/wp-local-config.php' )){ //local configuration
+    define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/' . basename(__DIR__) . '/wordpress-core');
+    define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME'] . '/' . basename(__DIR__));
+    define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/' . basename(__DIR__).  '/wp-content');
+    define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/' . basename(__DIR__) . '/wp-content');
 
-define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/wordpress-core');
-define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME']);
-define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content');
-define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content');
-define('WP_DEFAULT_THEME', 'mbi-theme');
-
-
-if(file_exists(dirname(__FILE__) . '/wp-local-config.php' )){
     include(dirname(__FILE__). '/wp-local-config.php');
     define('WP_LOCAL_DEV', true);
-}else{
+}else{ // production configuration
+    define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/wordpress-core');
+    define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME']);
+    define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content');
+    define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content');
+
     define('WP_LOCAL_DEV', false);
     define('DB_NAME', 'database_name_here');
     define('DB_USER', 'username_here');
@@ -45,6 +45,8 @@ if(file_exists(dirname(__FILE__) . '/wp-local-config.php' )){
      */
     define('WP_DEBUG', false);
 }
+/*set default theme */
+define('WP_DEFAULT_THEME', 'mbi-theme');
 
 /**#@+
  * Authentication Unique Keys and Salts.
@@ -83,8 +85,6 @@ $table_prefix  = 'wp_';
  * language support.
  */
 define('WPLANG', '');
-
-
 
 /* That's all, stop editing! Happy blogging. */
 
