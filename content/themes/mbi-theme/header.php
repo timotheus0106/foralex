@@ -4,9 +4,9 @@
  *
  * Displays all of the <head> section
  *
- * @package WordPress
- * @subpackage moodley brand identity
- * @since moodley brand identity HTML5 2.0
+ * @package moodley
+ * @subpackage wp
+ * @since mbi-theme 1.0
  */
 ?><!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
