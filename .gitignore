@@ -1,0 +1,17 @@
+# Wordpress Media Files #
+#########################
+content/blogs.dir
+content/uploads
+content/*uploads/*
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+*.swp

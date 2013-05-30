@@ -35,11 +35,11 @@ class muevo {
 	const FILE_NOT_FOUND  		= 2;
 	const CLASS_NOT_FOUND      	= 3;
 	const INIT_FAILED			= 4;
-	
+
 	public static $loaded = array();
 
 	protected static $defines = array();
-	
+
 	public static function define($key, $value = false) {
 		if( !$value and isset(self::$defines[$key]) ) {
 			return self::$defines[$key];
@@ -48,30 +48,30 @@ class muevo {
 			return $value;
 		}
 	}
-	
+
 	public static function unset_define($key) {
 		if( isset(self::$defines[$key]) ) {
 			unset(self::$defines);
-			return true;	
+			return true;
 		}
 		return false;
 	}
-	
-	
+
+
 	public static function load($class, $args=array()) {
 		// already loaded - return
 		if( isset(self::$loaded[$class]) ) return muevo::CLASS_ALREADY_LOADED;
-		
+
 		// load file
-		$class_path = dirname(__FILE__) . "/lib/$class/{$class}.php";	
-				
-			
-		if( !file_exists($class_path) ) return muevo::FILE_NOT_FOUND; 	
-			
+		$class_path = dirname(__FILE__) . "/lib/$class/{$class}.php";
+
+
+		if( !file_exists($class_path) ) return muevo::FILE_NOT_FOUND;
+
 		include_once($class_path);
 		self::$loaded[$class] = $class_path;
-				
-		
+
+
 		// check if class exists
 		if( !class_exists($class) ) {
 			return muevo::CLASS_NOT_FOUND;
@@ -84,9 +84,9 @@ class muevo {
 			}
 		}
 	}
-	
+
 	public static function filter_german_umlauts($post_name) {
-		
+
 	}
 
 }
@@ -118,8 +118,8 @@ function muevo_undefine($key) { return muevo::unset_define($key); }
 
 /** autoloader for muevo classes **/
 // autoloading of muevo classes
-spl_autoload_register(create_function('$class', 'return muevo::load($class);'));	
+spl_autoload_register(create_function('$class', 'return muevo::load($class);'));
 
 
 
-endif; 
+endif;
