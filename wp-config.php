@@ -4,13 +4,17 @@
  */
 if(file_exists(dirname(__FILE__) . '/wp-local-config.php' )){ // load local configuration
     /** if your WP installation is in htdocs root folder change /wp/ to / **/
-    define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp/' . basename(__DIR__) . '/wp');
-    define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME'] . '/wp/' . basename(__DIR__));
+    define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/' . basename(__DIR__) . '/wp');
+    define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME'] . '/' . basename(__DIR__));
     define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp/' . basename(__DIR__).  '/content');
-    define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp/' . basename(__DIR__) . '/content');
+    define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/' . basename(__DIR__) . '/content');
     include(dirname(__FILE__). '/wp-local-config.php');
     define('WP_LOCAL_DEV', true);
     define('WP_DEBUG', true);
+    define( 'FS_METHOD', 'direct' ); //local updates
+    define( 'FS_CHMOD_DIR', 0777 );
+    define( 'FS_CHMOD_FILE', 0777 );
+
 }else{ // load production configuration
     define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp');
     define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME']);
