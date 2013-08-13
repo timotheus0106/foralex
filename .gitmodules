@@ -2,3 +2,12 @@
 [submodule "wp"]
 	path = wp
 	url = https://github.com/WordPress/WordPress.git
+[submodule "content/mu-plugins/adminimize"]
+	path = content/mu-plugins/adminimize
+	url = https://github.com/bueltge/Adminimize.git
+[submodule "content/mu-plugins/limit-login-attempts"]
+	path = content/mu-plugins/limit-login-attempts
+	url = https://github.com/musicglue/wp-limit-login-attempts.git
+[submodule "content/mu-plugins/google-xml-sitemap-generator"]
+	path = content/mu-plugins/google-xml-sitemap-generator
+	url = https://github.com/tszming/google-sitemap-generator.git

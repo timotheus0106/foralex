@@ -6,7 +6,7 @@ if(file_exists(dirname(__FILE__) . '/wp-local-config.php' )){ // load local conf
     /** if your WP installation is in htdocs root folder change /wp/ to / **/
     define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/' . basename(__DIR__) . '/wp');
     define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME'] . '/' . basename(__DIR__));
-    define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp/' . basename(__DIR__).  '/content');
+    define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/' . basename(__DIR__).  '/content');
     define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/' . basename(__DIR__) . '/content');
     include(dirname(__FILE__). '/wp-local-config.php');
     define('WP_LOCAL_DEV', true);
@@ -51,6 +51,11 @@ define('AUTH_SALT',        'put your unique phrase here');
 define('SECURE_AUTH_SALT', 'put your unique phrase here');
 define('LOGGED_IN_SALT',   'put your unique phrase here');
 define('NONCE_SALT',       'put your unique phrase here');
+
+define('WPMU_PLUGIN_DIR', $_SERVER['DOCUMENT_ROOT'] . '/' . basename(__DIR__) .  '/content/mu-plugins');
+define('WPMU_PLUGIN_URL', $_SERVER['DOCUMENT_ROOT'] . '/' . basename(__DIR__) .  '/content/mu-plugins');
+
+
 
 /**#@-*/
 /** database table prefix **/
