@@ -52,8 +52,8 @@ define('SECURE_AUTH_SALT', 'put your unique phrase here');
 define('LOGGED_IN_SALT',   'put your unique phrase here');
 define('NONCE_SALT',       'put your unique phrase here');
 
-define('WPMU_PLUGIN_DIR', $_SERVER['DOCUMENT_ROOT'] . '/' . basename(__DIR__) .  '/content/mu-plugins');
-define('WPMU_PLUGIN_URL', $_SERVER['DOCUMENT_ROOT'] . '/' . basename(__DIR__) .  '/content/mu-plugins');
+// define('WPMU_PLUGIN_DIR', $_SERVER['DOCUMENT_ROOT'] . '/' . basename(__DIR__) .  '/content/mu-plugins');
+// define('WPMU_PLUGIN_URL', $_SERVER['DOCUMENT_ROOT'] . '/' . basename(__DIR__) .  '/content/mu-plugins');
 
 
 
@@ -62,7 +62,10 @@ define('WPMU_PLUGIN_URL', $_SERVER['DOCUMENT_ROOT'] . '/' . basename(__DIR__) . 
 $table_prefix  = 'mbi_';
 
 /** wordpress language - default english **/
-define('WPLANG', '');
+define('WPLANG', 'de_AT');
+
+/**increase memory limit**/
+define( 'WP_MEMORY_LIMIT', '128M' );
 
 /* That's all, stop editing! Happy blogging. */
 /** Absolute path to the WordPress directory. */
