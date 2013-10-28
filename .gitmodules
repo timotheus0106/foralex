@@ -2,3 +2,9 @@
 [submodule "wp"]
 	path = wp
 	url = https://github.com/WordPress/WordPress.git
+[submodule "content/plugins/wp-limit-login-attempts"]
+	path = content/plugins/wp-limit-login-attempts
+	url = https://github.com/musicglue/wp-limit-login-attempts.git
+[submodule "content/plugins/adminimize"]
+	path = content/plugins/adminimize
+	url = https://github.com/bueltge/Adminimize.git
