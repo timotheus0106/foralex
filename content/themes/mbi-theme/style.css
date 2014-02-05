@@ -1,15 +1,3 @@
-/**
-Theme Name: Moodley for ClientsName
-Theme URI: http://www.moodley.at
-Author: Moodley Brand Identity
-Author URI: http://www.moodley.at
-Description: Theme for XXX
-Version: 0.1
-
-**/
-
-
-
-
-/** //TODO: load via modernizr **/
-@import "css/normalize.css";
+header{background-color:grey;border-top:1px solid red;margin-top:15px;}
+.h1{color:red;}
+h1 a{text-decoration:none;color:red;letter-spacing:10px;display:block;border:1px solid #000;}

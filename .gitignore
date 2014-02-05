@@ -15,3 +15,24 @@ Icon?
 ehthumbs.db
 Thumbs.db
 *.swp
+
+# grunt #
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+npm-debug.log
+
+.sass-cache
+
+# grunt build
+content/themes/mbi-theme/assets/build
+content/themes/mbi-theme/assets/*build/*
