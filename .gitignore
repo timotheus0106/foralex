@@ -30,8 +30,8 @@ logs
 results
 
 npm-debug.log
-
 .sass-cache
+node_modules
 
 # grunt build
 content/themes/mbi-theme/assets/build
