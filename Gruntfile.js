@@ -10,25 +10,40 @@ module.exports = function(grunt) {
 	grunt.file.defaultEncoding = 'utf8';
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		sass: {
+		// sass: {
+		// 	prod: {
+		// 		options: {
+		// 			style: 'compressed',
+		// 			sourcemap: false,
+		// 			cacheLocation: '<%= pkg.srcUrl %>styles/.sass-cache'
+		// 		},
+		// 		files: {
+		// 			'<%= pkg.themeUrl %>style.css': '<%= pkg.srcUrl %>styles/style.scss',
+		// 		}
+		// 	},
+		// 	dev:{
+		// 		options: {
+		// 			style: 'expanded',
+		// 			sourcemap: true,
+		// 			cacheLocation: '<%= pkg.srcUrl %>styles/.sass-cache'
+		// 		},
+		// 		files: {
+		// 			'<%= pkg.themeUrl %>style.css': '<%= pkg.srcUrl %>styles/style.scss',
+		// 		}
+		// 	}
+		// },
+		compass: {
 			prod: {
 				options: {
-					style: 'compressed',
-					sourcemap: false,
-					cacheLocation: '<%= pkg.srcUrl %>styles/.sass-cache'
-				},
-				files: {
-					'<%= pkg.themeUrl %>style.css': '<%= pkg.srcUrl %>styles/style.scss',
+					sassDir: '<%= pkg.srcUrl %>styles',
+					cssDir: '<%= pkg.themeUrl %>',
+					environment: 'production'
 				}
 			},
-			dev:{
+			dev: {
 				options: {
-					style: 'expanded',
-					sourcemap: true,
-					cacheLocation: '<%= pkg.srcUrl %>styles/.sass-cache'
-				},
-				files: {
-					'<%= pkg.themeUrl %>style.css': '<%= pkg.srcUrl %>styles/style.scss',
+					sassDir: '<%= pkg.srcUrl %>styles',
+					cssDir: '<%= pkg.themeUrl %>',
 				}
 			}
 		},
@@ -65,20 +80,27 @@ module.exports = function(grunt) {
 		watch: {
 			options: {
 				livereload: true,
+				spawn: false
 			},
 			scripts: {
 				files: ['<%= pkg.srcUrl %>/js/**/*.js'],
-				tasks: ['concat'],
-				options: {
-					spawn: false,
-				}
+				tasks: ['concat']
+				// options: {
+				// 	spawn: false,
+				// }
 			},
 			css: {
 				files: ['<%= pkg.srcUrl %>/styles/*.scss'],
-				tasks: ['sass:dev', 'cssc'],
-				options: {
-					spawn: false,
-				}
+				tasks: ['compass:dev', 'cssc']
+				// options: {
+				// 	spawn: false,
+				// }
+			},
+			html: {
+				files: ['<%= pkg.themeUrl %>/**/*.php']
+				// options: {
+				// 	spawn: false,
+				// }
 			}
 		},
 		// deployments: {
@@ -118,5 +140,5 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('build', ['sass', 'cssc', 'concat', 'uglify']);
+	grunt.registerTask('build', ['compass:prod', 'cssc', 'concat', 'uglify']);
 };
