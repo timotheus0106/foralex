@@ -33,17 +33,22 @@ module.exports = function(grunt) {
 		// 	}
 		// },
 		compass: {
+			options: {
+				cacheDir: '<%= pkg.srcUrl %>styles/.sass-cache'
+			},
 			prod: {
 				options: {
 					sassDir: '<%= pkg.srcUrl %>styles',
 					cssDir: '<%= pkg.themeUrl %>',
-					environment: 'production'
+					environment: 'production',
+					outputStyle: 'compressed'
 				}
 			},
 			dev: {
 				options: {
 					sassDir: '<%= pkg.srcUrl %>styles',
 					cssDir: '<%= pkg.themeUrl %>',
+					outputStyle: 'expanded'
 				}
 			}
 		},
@@ -53,6 +58,18 @@ module.exports = function(grunt) {
 					consolidateViaDeclarations: false,
 					consolidateViaSelectors:    true,
 					consolidateMediaQueries:    true
+				},
+				files: {
+					'<%= pkg.themeUrl %>style.css': '<%= pkg.themeUrl %>style.css'
+				}
+			},
+			dev: {
+				options: {
+					consolidateViaDeclarations: false,
+					consolidateViaSelectors:    true,
+					consolidateMediaQueries:    true,
+					lineBreaks: false,
+					compress: false
 				},
 				files: {
 					'<%= pkg.themeUrl %>style.css': '<%= pkg.themeUrl %>style.css'
@@ -90,8 +107,8 @@ module.exports = function(grunt) {
 				// }
 			},
 			css: {
-				files: ['<%= pkg.srcUrl %>/styles/*.scss'],
-				tasks: ['compass:dev', 'cssc']
+				files: ['<%= pkg.srcUrl %>/styles/**/*.scss'],
+				tasks: ['compass:dev', 'cssc:dev']
 				// options: {
 				// 	spawn: false,
 				// }

@@ -34,5 +34,6 @@ npm-debug.log
 node_modules
 
 # grunt build
+content/themes/mbi-theme/style.css
 content/themes/mbi-theme/assets/build
 content/themes/mbi-theme/assets/*build/*

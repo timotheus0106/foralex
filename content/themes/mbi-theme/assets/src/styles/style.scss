@@ -1,23 +1,11 @@
 
 
-//@import "compass"; // Compass library
-@import "partials/bits";
+@import "compass"; // Compass library
+
+
+@import "modules/vars";
+
+@import "partials/normalize"; // Compass librarys
+
 @import "partials/base";
-
-
-header{
-    background-color: grey;
-    border-top:1px solid red;
-    margin-top: 15px;
-}
-.h1{
-  color:red;
-}
-h1 a{
-  text-decoration: none;
-  color:red;
-  letter-spacing: 10px;
-  display: block;
-  border:1px solid #000;
-
-}
+@import "partials/shame";
