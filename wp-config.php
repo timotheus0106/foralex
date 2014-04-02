@@ -67,6 +67,10 @@ define('WPLANG', 'de_AT');
 /**increase memory limit**/
 define( 'WP_MEMORY_LIMIT', '128M' );
 
+/** turn of post revisions and auto-save **/
+define( 'WP_POST_REVISIONS', false );
+
+
 /* That's all, stop editing! Happy blogging. */
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )

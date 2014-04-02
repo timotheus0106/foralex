@@ -16,7 +16,7 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<!-- <meta name="viewport" content="width=1160" /> -->
+<meta name="viewport" content="width=device-width" />
 <title><?php
 
     global $page, $paged;
@@ -33,19 +33,14 @@
         echo ' | ' . sprintf( __( 'Page %s', 'moodley' ), max( $paged, $page ) );
 
     ?></title>
-<!-- <link rel="profile" href="http://gmpg.org/xfn/11" /> -->
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
-<!-- <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" /> -->
-
-
-
-
+<script src="<?php bloginfo('template_directory'); ?>/assets/build/js/main.js"></script>
 
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
-<div class="page-wrapper">
-    <header id="header">
+<div class="page">
+    <header class="header">
     </header>

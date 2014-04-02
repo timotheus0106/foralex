@@ -2,10 +2,22 @@
 
 @import "compass"; // Compass library
 
+/* globals */
+@import "globals/colors";
+@import "globals/fonts";
+@import "globals/vars";
 
-@import "modules/vars";
+/* mixins */
 
+/* partials */
 @import "partials/normalize"; // Compass librarys
-
 @import "partials/base";
+@import "partials/fonts";
+@import "partials/utils";
+
+
+/* partials / modules */
+
+
+/* nobody is perfect */
 @import "partials/shame";

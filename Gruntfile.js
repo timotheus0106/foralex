@@ -35,6 +35,7 @@ module.exports = function(grunt) {
 		compass: {
 			options: {
 				cacheDir: '<%= pkg.srcUrl %>styles/.sass-cache'
+
 			},
 			prod: {
 				options: {
@@ -48,7 +49,8 @@ module.exports = function(grunt) {
 				options: {
 					sassDir: '<%= pkg.srcUrl %>styles',
 					cssDir: '<%= pkg.themeUrl %>',
-					outputStyle: 'expanded'
+					outputStyle: 'expanded',
+					raw: "sass_options = {:sourcemap => true}\n"
 				}
 			}
 		},
@@ -76,21 +78,33 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		concat: {
-			scripts: {
-				options: {
-					banner: '/* Moodley Brand Identity / www.moodley.at\r\nProject: <%= pkg.name %> – Build Version: <%= pkg.version %> - Build Time: <%= grunt.template.today() %> */\r\n'
+		requirejs: {
+			options: {
+				baseUrl: "<%= pkg.srcUrl %>js",
+				mainConfigFile: "<%= pkg.srcUrl %>/js/build.js",
+				out: "<%= pkg.buildUrl %>/js/main.js",
+				name: "./main",
+				paths: {
+					requireLib: 'vendor/require'
 				},
-				files: {
-					'<%= pkg.buildUrl %>js/header.js': getScripts('header'),
-					'<%= pkg.buildUrl %>js/scripts.js': getScripts('footer')
+				include: 'requireLib'
+			},
+			prod: {
+				options: {
+					optimize: "uglify",
+					preserveLicenseComments: false,
+				}
+			},
+			dev: {
+				options: {
+					optimize: "none"
 				}
 			}
 		},
 		uglify: {
 			target_scripts: {
 				files: {
-					'<%= pkg.buildUrl %>js/scripts.js': '<%= pkg.buildUrl %>/js/scripts.js'
+					'<%= pkg.buildUrl %>js/main.js': '<%= pkg.buildUrl %>/js/main.js'
 				}
 			}
 		},
@@ -101,61 +115,18 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ['<%= pkg.srcUrl %>/js/**/*.js'],
-				tasks: ['concat']
-				// options: {
-				// 	spawn: false,
-				// }
+				tasks: ['requirejs:dev']
 			},
 			css: {
 				files: ['<%= pkg.srcUrl %>/styles/**/*.scss'],
 				tasks: ['compass:dev', 'cssc:dev']
-				// options: {
-				// 	spawn: false,
-				// }
 			},
 			html: {
 				files: ['<%= pkg.themeUrl %>/**/*.php']
-				// options: {
-				// 	spawn: false,
-				// }
 			}
-		},
-		// deployments: {
-		// 	options: {},
-		// 	// "Local" target
-		// 	"local": {
-		// 		"title": "Local",
-		// 		"database": "fuhrwerk",
-		// 		"user": "root",
-		// 		"pass": "",
-		// 		"host": "127.0.0.1",
-		// 		"url": "http://10.0.0.31/fuhrwerk"
-		// 	},
-		// 	// "Remote" target
-		// 	"production": {
-		// 		"title": "Production",
-		// 		"database": "fuhrwerkcc",
-		// 		"user": "fuhrwerkcc",
-		// 		"pass": "Nyxmjkp8",
-		// 		"host": "127.0.0.1",
-		// 		"url": "http://fuhrwerkcc.clients.moodley.at/",
-		// 		"ssh_host": "root@rs203775.rs.hosteurope.de"
-		// 	}
-		// },
-		// jshint: {
-		// 	options: {
-		// 		curly: true,
-		// 		eqeqeq: true,
-		// 		eqnull: true,
-		// 		browser: true,
-		// 		globals: {
-		// 			jQuery: true
-		// 		}
-		// 	},
-		// 	all: ['Gruntfile.js', '<%= pkg.buildUrl %>/js/**/*.js']
-		// }
+		}
 	});
 
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('build', ['compass:prod', 'cssc', 'concat', 'uglify']);
+	grunt.registerTask('build', ['compass:prod', 'cssc:prod', 'requirejs:prod','uglify']);
 };
