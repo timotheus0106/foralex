@@ -2,56 +2,65 @@ module.exports = function(grunt) {
 	// load all grunt tasks matching the `grunt-*` pattern
 	require('load-grunt-tasks')(grunt);
 
-	var scriptConf = require('./content/themes/mbi-theme/assets/conf/scripts.json');
-	function getScripts(section){
-		return scriptConf[section];
-	}
+	// var scriptConf = require('./content/themes/mbi-theme/assets/conf/scripts.json');
+	// function getScripts(section){
+	// 	return scriptConf[section];
+	// }
 
 	grunt.file.defaultEncoding = 'utf8';
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		// sass: {
+		sass: {
+			prod: {
+				options: {
+					style: 'compressed',
+					sourcemap: false,
+					cacheLocation: '<%= pkg.srcUrl %>styles/.sass-cache'
+				},
+				files: {
+					'<%= pkg.themeUrl %>style.css': '<%= pkg.srcUrl %>styles/style.scss',
+				}
+			},
+			dev:{
+				options: {
+					style: 'expanded',
+					sourcemap: true,
+					cacheLocation: '<%= pkg.srcUrl %>styles/.sass-cache'
+				},
+				files: {
+					'<%= pkg.themeUrl %>style.css': '<%= pkg.srcUrl %>styles/style.scss',
+				}
+			}
+		},
+		// compass: {
+		// 	options: {
+		// 		cacheDir: '<%= pkg.srcUrl %>styles/.sass-cache'
+
+		// 	},
 		// 	prod: {
 		// 		options: {
-		// 			style: 'compressed',
-		// 			sourcemap: false,
-		// 			cacheLocation: '<%= pkg.srcUrl %>styles/.sass-cache'
-		// 		},
-		// 		files: {
-		// 			'<%= pkg.themeUrl %>style.css': '<%= pkg.srcUrl %>styles/style.scss',
+		// 			sassDir: '<%= pkg.srcUrl %>styles',
+		// 			cssDir: '<%= pkg.themeUrl %>',
+		// 			environment: 'production',
+		// 			outputStyle: 'compressed'
 		// 		}
 		// 	},
-		// 	dev:{
+		// 	dev: {
 		// 		options: {
-		// 			style: 'expanded',
-		// 			sourcemap: true,
-		// 			cacheLocation: '<%= pkg.srcUrl %>styles/.sass-cache'
-		// 		},
-		// 		files: {
-		// 			'<%= pkg.themeUrl %>style.css': '<%= pkg.srcUrl %>styles/style.scss',
+		// 			sassDir: '<%= pkg.srcUrl %>styles',
+		// 			cssDir: '<%= pkg.themeUrl %>',
+		// 			outputStyle: 'expanded',
+		// 			raw: "sass_options = {:sourcemap => true}\n"
 		// 		}
 		// 	}
 		// },
-		compass: {
+		autoprefixer: {
 			options: {
-				cacheDir: '<%= pkg.srcUrl %>styles/.sass-cache'
-
+				// Task-specific options go here.
 			},
-			prod: {
-				options: {
-					sassDir: '<%= pkg.srcUrl %>styles',
-					cssDir: '<%= pkg.themeUrl %>',
-					environment: 'production',
-					outputStyle: 'compressed'
-				}
-			},
-			dev: {
-				options: {
-					sassDir: '<%= pkg.srcUrl %>styles',
-					cssDir: '<%= pkg.themeUrl %>',
-					outputStyle: 'expanded',
-					raw: "sass_options = {:sourcemap => true}\n"
-				}
+			prefix: {
+				src: '<%= pkg.themeUrl %>style.css',
+				dest: '<%= pkg.themeUrl %>style.css'
 			}
 		},
 		cssc: {
@@ -80,32 +89,24 @@ module.exports = function(grunt) {
 		},
 		requirejs: {
 			options: {
-				baseUrl: "<%= pkg.srcUrl %>js",
-				mainConfigFile: "<%= pkg.srcUrl %>/js/build.js",
-				out: "<%= pkg.buildUrl %>/js/main.js",
-				name: "./main",
-				paths: {
-					requireLib: 'vendor/require'
-				},
-				include: 'requireLib'
 			},
-			prod: {
+			reqtask: {
 				options: {
-					optimize: "uglify",
-					preserveLicenseComments: false,
+					mainConfigFile: "<%= pkg.assetsUrl %>conf/build.js"
 				}
 			},
-			dev: {
-				options: {
-					optimize: "none"
-				}
-			}
 		},
 		uglify: {
 			target_scripts: {
-				files: {
-					'<%= pkg.buildUrl %>js/main.js': '<%= pkg.buildUrl %>/js/main.js'
-				}
+				// files: {
+				// 	'<%= pkg.buildUrl %>js/*.js': '<%= pkg.buildUrl %>js/*.js'
+				// }
+				files: [{
+          expand: true,
+          cwd: '<%= pkg.buildUrl %>js',
+          src: '*.js',
+          dest: '<%= pkg.buildUrl %>js'
+      	}]
 			}
 		},
 		watch: {
@@ -115,11 +116,12 @@ module.exports = function(grunt) {
 			},
 			scripts: {
 				files: ['<%= pkg.srcUrl %>/js/**/*.js'],
-				tasks: ['requirejs:dev']
+				tasks: ['requirejs']
+				// tasks: ['requirejs:head', 'requirejs:main']
 			},
 			css: {
 				files: ['<%= pkg.srcUrl %>/styles/**/*.scss'],
-				tasks: ['compass:dev', 'cssc:dev']
+				tasks: ['sass:dev' , 'autoprefixer']
 			},
 			html: {
 				files: ['<%= pkg.themeUrl %>/**/*.php']
@@ -128,5 +130,6 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', ['watch']);
-	grunt.registerTask('build', ['compass:prod', 'cssc:prod', 'requirejs:prod','uglify']);
+	grunt.registerTask('req', ['requirejs']);
+	grunt.registerTask('build', ['sass:prod', 'autoprefixer', 'cssc:prod', 'requirejs','uglify']);
 };

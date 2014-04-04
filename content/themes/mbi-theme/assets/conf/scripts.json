@@ -1,8 +1,0 @@
-{
-  "header" : [
-    "./content/themes/mbi-theme/assets/src/js/libs/modernizr.min.js"
-  ],
-  "footer" : [
-    "./content/themes/mbi-theme/assets/src/js/script.js"
-  ]
-}

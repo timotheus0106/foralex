@@ -16,6 +16,13 @@
 
 get_header(); ?>
 
+<h1>Heading One</h1>
+<h2>Heading two</h2>
+<h3>Heading three</h3>
+<h4>Heading four</h4>
+<h5>Heading five</h5>
+<h6>Heading six</h6>
+
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 		<?php if ( have_posts() ) : ?>

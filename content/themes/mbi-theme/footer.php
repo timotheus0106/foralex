@@ -22,6 +22,8 @@
 		</footer><!-- #colophon -->
 	</div><!-- #page -->
 
+	<script async src="<?php bloginfo('template_directory'); ?>/assets/build/js/main.js"></script>
+
 	<?php wp_footer(); ?>
 </body>
 </html>

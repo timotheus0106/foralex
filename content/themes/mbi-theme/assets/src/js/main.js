@@ -1,13 +1,4 @@
-
-
-require(["modernizr"]); // load modernizr
-
-require(['jquery'], function ($) {
-	'use strict';
+require(['jquery', 'modules/elements'], function($, Elements) {
+ 	'use strict';
 		//$ can be used here
-
 });
-
-
-
-

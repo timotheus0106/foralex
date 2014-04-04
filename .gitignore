@@ -32,6 +32,7 @@ results
 npm-debug.log
 .sass-cache
 node_modules
+content/themes/mbi-theme/style.css.map
 
 # grunt build
 content/themes/mbi-theme/style.css

@@ -34,7 +34,7 @@
 
     ?></title>
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
-<script src="<?php bloginfo('template_directory'); ?>/assets/build/js/main.js"></script>
+<script src="<?php bloginfo('template_directory'); ?>/assets/build/js/head.js"></script>
 
 <?php wp_head(); ?>
 </head>

@@ -1,23 +1,31 @@
 
 
-@import "compass"; // Compass library
-
-/* globals */
+/** globals **/
 @import "globals/colors";
 @import "globals/fonts";
 @import "globals/vars";
 
-/* mixins */
+/** mixins **/
+@import "mixins/fonts-mixin";
+@import "mixins/mq-mixin";
+@import "mixins/opacity-mixin";
+
 
 /* partials */
-@import "partials/normalize"; // Compass librarys
+
+/** partials/normalize
+* - edit default styles here
+* - no class selectors (except for adding default behaviour)
+**/
+@import "partials/normalize";
 @import "partials/base";
 @import "partials/fonts";
 @import "partials/utils";
 
 
-/* partials / modules */
+/** partials / modules **/
 
 
-/* nobody is perfect */
+
+/** nobody is perfect **/
 @import "partials/shame";
