@@ -1,45 +1,13 @@
 <?php
-/**
- * The main template file.
- *
- * This is the most generic template file in a WordPress theme and one of the
- * two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * For example, it puts together the home page when no home.php file exists.
- *
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
- *
- * @package WordPress
- * @subpackage Twenty_Thirteen
- * @since Twenty Thirteen 1.0
- */
 
-get_header(); ?>
+// load all data here and put into $data global container
 
-<h1>Heading One</h1>
-<h2>Heading two</h2>
-<h3>Heading three</h3>
-<h4>Heading four</h4>
-<h5>Heading five</h5>
-<h6>Heading six</h6>
+$data->add('solutions', $knapp->get_solutions());
 
-	<div id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
-		<?php if ( have_posts() ) : ?>
+// load parts afterwards (header also uses $data etc.)
 
-			<?php /* The loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', get_post_format() ); ?>
-			<?php endwhile; ?>
+include(locate_template('header.php'));
 
-			<?php //twentythirteen_paging_nav(); ?>
+include(locate_template('parts/menu.part.php')); // you don't have to use global $var; inside to get global variables :)
 
-		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
-		<?php endif; ?>
-
-		</div><!-- #content -->
-	</div><!-- #primary -->
-
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+include(locate_template('footer.php'));

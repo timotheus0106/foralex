@@ -1,46 +1,37 @@
 <?php
-/**
- * The Header for our theme.
- *
- * Displays all of the <head> section
- *
- * @package moodley
- * @subpackage wp
- * @since mbi-theme 1.0
- */
+
+// always prepare data at the top
+
+$data->add('meta', array(
+
+	'title' => 'WP2GO',
+	'lang' => 'de'
+
+));
+
 ?><!DOCTYPE html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" <?php language_attributes(); ?>> <!--<![endif]-->
+<!--[if lt IE 9]><html class="no-js ie8" lang="<?php echo $data->get['meta']['lang']; ?>"><![endif]-->
+<!--[if IE 9]><html class="no-js ie9" lang="<?php echo $data->get['meta']['lang']; ?>"><![endif]-->
+<!--[if IE 10]><html class="no-js ie10" lang="<?php echo $data->get['meta']['lang']; ?>"><![endif]-->
+<html lang="<?php echo $data->get['meta']['lang']; ?>" class="no-js">
 <head>
-<meta charset="<?php bloginfo( 'charset' ); ?>" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width" />
-<title><?php
 
-    global $page, $paged;
+	<meta charset="UTF-8">
+	<title><?php echo $data->get['meta']['title']; ?></title>
 
-    wp_title( '|', true, 'right' );
+<?php $helper->banner(); ?>
 
-    bloginfo( 'name' );
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
 
-    $site_description = get_bloginfo( 'description', 'display' );
-    if ( $site_description && ( is_home() || is_front_page() ) )
-        echo " | $site_description";
+	<link rel="stylesheet" href="<?php echo(get_template_directory_uri()); ?>/style.css">
 
-    if ( $paged >= 2 || $page >= 2 )
-        echo ' | ' . sprintf( __( 'Page %s', 'moodley' ), max( $paged, $page ) );
+	<script src="<?php echo(get_template_directory_uri()); ?>/assets/build/js/head.js"></script>
 
-    ?></title>
-<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
-<script src="<?php bloginfo('template_directory'); ?>/assets/build/js/head.js"></script>
+	<?php wp_head(); ?>
 
-<?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
-<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+<body>
 
-<div class="page">
-    <header class="header">
-    </header>
+	<!--[if lt IE 9]>
+	<div>This is IE8. Stop using such things. ;)</div>
+	<![endif]-->
