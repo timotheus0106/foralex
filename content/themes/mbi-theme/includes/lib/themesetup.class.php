@@ -36,9 +36,6 @@ Class ThemeSetup {
 		// Gallery Style (what?)
 		add_filter('use_default_gallery_style', '__return_false');
 
-		// Beautify Search Redirects
-		add_action('template_redirect', array($this, 'beautify_search_redirect'));
-
 		// Remove width/height from images
 		add_filter('post_thumbnail_html', array($this, 'remove_thumbnail_dimensions'), 10);
 
