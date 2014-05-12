@@ -16,6 +16,7 @@ Class Settings {
 			'widgets' => false,
 			'page_tags' => false,
 			'banner' => true,
+			'dynamic_images' => true,
 
 			'menus' => array(
 
@@ -39,10 +40,10 @@ Class Settings {
 
 				'fullscreen' => array(
 
-					'landscape' => array(1440, 16, 9, 'only screen and (max-width: 1024px)'),
-					'portrait' => array(1440, 16, 9, 'only screen and (max-width: 1024px)'),
-					'landscape_closeup' => array(1440, 16, 9, 'only screen and (max-width: 1024px)'),
-					'portrait_closeup' => array(1440, 16, 9, 'only screen and (max-width: 1024px)')
+					'landscape' => array(1440, 16, 9, null), // standard ohne eigene media query für fallback
+					'portrait' => array(1440, 4, 3, 'only screen and (min-width: 768px) and (orientation: portrait)'),
+					'landscape_closeup' => array(800, 16, 9, 'only screen and (max-width: 768px) and (orientation: landscape)'), // only with _suffix
+					'portrait_closeup' => array(400, 4, 3, 'only screen and (max-width: 768px) and (orientation: portrait)')
 
 				)
 
@@ -51,18 +52,24 @@ Class Settings {
 			// only for picture element breakpoints
 			'picture' => array(
 
-				'grid' => array(
+				'grid' => array( // immer gefälligst standard + preview
 
-					'size' => array(400, 1, 1), // width, x ratio, y ratio
-					'stages' => array(
+					'preview' => array(100, 1, 1, null),
+					'standard' => array(800, 1, 1, 'only screen and (min-width: 768px) and (max-width: 1200px)'),
 
-						'small' => 'only screen and (max-width: 768px)',
-						'medium' => 'only screen and (min-width: 768px) and (max-width: 1200px)',
-						'large' => 'only screen and (min-width: 1200px)'
+					'small' => array(1440, 1, 1, 'only screen and (max-width: 768px)'),
+					'large' => array(320, 1, 1, 'only screen and (min-width: 1200px)')
 
-					)
+				),
+				'swiper' => array( // immer gefälligst standard + preview
 
-				)
+					'preview' => array(100, 16, 9, null),
+					'standard' => array(800, 16, 9, 'only screen and (min-width: 768px) and (max-width: 1200px)'),
+
+					'small' => array(1440, 5, 3, 'only screen and (max-width: 768px)'),
+					'large' => array(320, 1, 1, 'only screen and (min-width: 1200px)')
+
+				),
 
 			)
 
