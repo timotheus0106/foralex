@@ -5,3 +5,55 @@
 - keep this file as small as possible!
 
 **/
+
+.page-content{
+	min-height: 500px;
+}
+
+
+// .flip-box{
+// 	background: grey;
+// }
+// .flyout--sidebar{
+// 	margin-top:20%;
+// }
+
+// .flip-box__step--previous{
+// 	background:red;
+// }
+// .flip-box__step--current{
+// 	background:yellow;
+// }
+// .flip-box__step--next{
+// 	background:green;
+// }
+// .controls{
+// 	position: absolute;
+// 	top: 170px;
+// }
+
+.height--200{
+    height:200px;
+}
+.height--500{
+    height:500px;
+}
+.height--800{
+    height:800px;
+}
+.height--1000{
+    height:1000px;
+}
+.giant{
+    width: 1040px;
+    height:1040px;
+}
+.button{
+
+    position:relative;
+    top:30px;
+    width:80px;
+    height:80px;
+    margin-bottom:80px;
+
+}

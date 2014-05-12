@@ -5,7 +5,6 @@ require.config({
 	paths: {
 			requireLib: 'vendor/require',
 			jquery: 'vendor/jquery-2.1.0',
-			base: 'content/themes/mbi-theme/assets/build/js'
 	},
 	dir: "../build/js",
 	optimize: "none",

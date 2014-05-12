@@ -1,24 +1,24 @@
-$break-tiny: 320px!default;
-$break-small: 320px!default;
-$break-medium: 768px!default;
-$break-large: 1024px!default;
-$break-wide: 1200px!default;
+// $break-tiny: 320px!default;
+// $break-small: 320px!default;
+// $break-medium: 768px!default;
+// $break-large: 1024px!default;
+// $break-wide: 1200px!default;
 
-/**
-	usage: @include mq(small-screens) { width: 100% ;}
-*/
+// /**
+// 	usage: @include mq(small-screens) { width: 100% ;}
+// */
 
-@mixin mq($media) {
-  @if $media == small-screens {
-    @media only screen and (min-width: $break-small) { @content; }
-  }
-  @else if $media == medium-screens {
-    @media only screen and (min-width: $break-medium){ @content; }
-  }
-  @else if $media == large-screens {
-    @media only screen and (min-width: $break-large) { @content; }
-  }
-  @else if $media == wide-screens {
-    @media only screen and (min-width: $break-wide) { @content; }
-  }
-}
+// @mixin mq($media) {
+//   @if $media == small-screens {
+//     @media only screen and (min-width: $break-small) { @content; }
+//   }
+//   @else if $media == medium-screens {
+//     @media only screen and (min-width: $break-medium){ @content; }
+//   }
+//   @else if $media == large-screens {
+//     @media only screen and (min-width: $break-large) { @content; }
+//   }
+//   @else if $media == wide-screens {
+//     @media only screen and (min-width: $break-wide) { @content; }
+//   }
+// }

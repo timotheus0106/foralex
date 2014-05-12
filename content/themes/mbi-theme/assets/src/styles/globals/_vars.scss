@@ -1,1 +1,31 @@
+/** TEEEEEST 2 **/
+
 /** Variables **/
+
+
+
+/*
+ * Layout & Media Queries
+ */
+$main-sidebar-width: 193; // left sidebar
+$secondary-sidebar-width: 55; // icon sidebar on the right
+$base-column-width: 208px;
+$nav-column-widths: $main-sidebar-width + $secondary-sidebar-width;
+
+// $palm-start: 				868px!default;
+// $lap-start:         1074px!default;
+// $desk-start:        1280px!default;
+// $desk-wide-start:   1486px!default;
+// //extra sizes
+// $desk-giga-start: 	1692px!default;
+// $cinema-start: 			1898px!default;
+
+$palm-start: 				$base-column-width * 3 + $nav-column-widths !default; // 3 columns + nav bars
+$lap-start:         $base-column-width * 4 + $nav-column-widths !default; // 4 columns + nav bars
+$desk-start:        $base-column-width * 5 + $nav-column-widths !default; // 5 columns + nav bars
+$desk-wide-start:   $base-column-width * 6 + $nav-column-widths !default; // 6 columns + nav bars
+//extra sizes
+$desk-giga-start: 	$base-column-width * 7 + $nav-column-widths !default; // 7 columns + nav bars
+$cinema-start: 			$base-column-width * 8 + $nav-column-widths !default; // 8 columns + nav bars
+
+

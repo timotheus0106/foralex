@@ -1,0 +1,33 @@
+/**
+ * Flip Box
+ */
+
+
+.flip-box,
+.flip-box__steps{
+	height: 100%;
+
+}
+.flip-box__steps{
+	position: relative;
+	overflow: hidden; //<-- uncomment when done!!!
+}
+	.flip-box__step{
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		transform: translateY(-200%);
+		opacity: 0;
+		transition: transform 0.8s ease-in-out, opacity 0.4s ease-in-out;
+	}
+
+	.flip-box__step--previous{
+		transform: translateY(-100%);
+	}
+	.flip-box__step--current{
+		opacity: 1;
+		transform: translateY(0);
+	}
+	.flip-box__step--next{
+		transform: translateY(100%);
+	}

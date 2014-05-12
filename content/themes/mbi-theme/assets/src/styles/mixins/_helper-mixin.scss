@@ -1,0 +1,19 @@
+
+
+
+/*
+ * Sets the width of an element to X times of the given width.
+ * usage: @include content-columns($base-column-width, 1);
+ */
+@function content-columns($width, $num:1){
+	@return (strip-unit($width) * $num * 1px);
+}
+
+/*
+ * Stripes of the unit of the given value
+ * usage: strip-unit(16px) - returns 16;
+ */
+
+@function strip-unit($number) {
+  @return $number / ($number * 0 + 1);
+}

@@ -1,0 +1,13 @@
+.pattern{
+	height: 100%;
+	position: fixed;
+	top:0;
+	left: $main-sidebar-width * 1px;
+	z-index: 1;
+	overflow:hidden; /* needed for flyout */
+}
+
+.pattern__col{
+	border-right:1px solid $primary-highlight-color-light;
+	height: 100%;
+}
