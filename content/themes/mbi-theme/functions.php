@@ -16,13 +16,7 @@ $settings->init(array( // see settings for defaults
 		'main_menu' => 'Top Menu'
 
 	),
-	'comments' => false,
-	'mediaqueries' => array(
-
-		'small' => 'all and (max-width: 768px)',
-		'large' => 'all and (min-width: 1200px)'
-
-	)
+	'comments' => false
 
 ));
 
@@ -40,6 +34,14 @@ require_once('includes/lib/loader.class.php');
 // Data
 // ----------------------------------------------------------------------------------
 require_once('includes/lib/data.class.php');
+
+// ----------------------------------------------------------------------------------
+// Art Directed Images
+// ----------------------------------------------------------------------------------
+
+require_once('includes/lib/images.class.php');
+require_once('includes/lib/picture.class.php');
+require_once('includes/lib/artdirected.class.php');
 
 // ----------------------------------------------------------------------------------
 // Project Functions
