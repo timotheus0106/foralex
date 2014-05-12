@@ -12,7 +12,7 @@ Class Settings {
 
 			'debug' => false,
 
-			'comments' => true,
+			'comments' => false,
 			'widgets' => false,
 			'page_tags' => false,
 			'banner' => true,
@@ -23,6 +23,7 @@ Class Settings {
 				'footer_menu' => 'Footer Menu'
 
 			),
+			'beautifysearch' => true,
 
 			// to register as breakpoints within js
 			'breakpoints' => array(

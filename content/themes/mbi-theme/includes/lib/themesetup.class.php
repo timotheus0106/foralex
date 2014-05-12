@@ -67,6 +67,13 @@ Class ThemeSetup {
 
         }
 
+        // remove widgets
+        if($this->settings->get_option('beautifysearch') === true) {
+
+            add_action('init', array($this, 'beautify_search_redirect'), 1);
+
+        }
+
 	}
 
 	// --------------------------------------------------
@@ -74,16 +81,16 @@ Class ThemeSetup {
 	public function assets() {
 
 		// Deregister WPs jQuery
-        wp_deregister_script('jquery');
+        wp_deregister_script('jquery'); // Deregister WPs jQuery, because it is handled by requirejs
 
-        // @todo: correctly register scripts/styles here
+        //head-js: scripts that need to be in head (e.g. modernizr, requirejs)
+        wp_enqueue_script('head-js', get_template_directory_uri(). '/assets/build/js/head.js', '', '', false);
 
-        // wp_enqueue_script('modenizr-js', get_template_directory_uri().'/assets/js/libs/modernizr.min.js', '', '', false);
-        // wp_enqueue_script('main-js', get_template_directory_uri().'/assets/js/build/scripts.min.js', '', '', true);
-
-        // wp_localize_script('main-js', 'baseUrl', array(
-        //     'path' => get_stylesheet_directory_uri() . '/assets/build/js'
-        // ));
+        //main-js: all the other scripts are packaged here
+        wp_enqueue_script('main-js', get_template_directory_uri(). '/assets/build/js/main.js', '', '', true);
+        wp_localize_script( 'main-js', 'baseUrl', array(
+            'path' => get_stylesheet_directory_uri() . '/assets/build/js'
+        ));
 
     }
 
