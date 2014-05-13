@@ -14,9 +14,10 @@ Class Settings {
 
 			'comments' => false,
 			'widgets' => false,
-			'page_tags' => false,
 			'banner' => true,
-			'dynamic_images' => true,
+			'dynamic_images' => true, // this is important, better not turn it to false!
+
+			'page_tags' => false,
 
 			'menus' => array(
 
@@ -27,6 +28,8 @@ Class Settings {
 			'beautifysearch' => true,
 
 			// to register as breakpoints within js
+			// for now no overlapping queries are possible
+			// @todo make this work for overlapping breakpoints
 			'breakpoints' => array(
 
 				'small' => 'only screen and (max-width: 768px)',
@@ -41,9 +44,9 @@ Class Settings {
 				'fullscreen' => array(
 
 					'landscape' => array(1440, 16, 9, null), // standard ohne eigene media query für fallback
-					'portrait' => array(1440, 4, 3, 'only screen and (min-width: 768px) and (orientation: portrait)'),
-					'landscape_closeup' => array(800, 16, 9, 'only screen and (max-width: 768px) and (orientation: landscape)'), // only with _suffix
-					'portrait_closeup' => array(400, 4, 3, 'only screen and (max-width: 768px) and (orientation: portrait)')
+					'portrait' => array(930, 3, 4, 'only screen and (min-width: 768px) and (orientation: portrait)'),
+					'landscape_closeup' => array(640, 5, 3, 'only screen and (max-width: 768px) and (orientation: landscape)'), // only with _suffix
+					'portrait_closeup' => array(384, 3, 5, 'only screen and (max-width: 768px) and (orientation: portrait)')
 
 				)
 
@@ -52,6 +55,8 @@ Class Settings {
 			// only for picture element breakpoints
 			'picture' => array(
 
+				/*
+
 				'grid' => array( // immer gefälligst standard + preview
 
 					'preview' => array(100, 1, 1, null),
@@ -59,17 +64,9 @@ Class Settings {
 
 					'small' => array(1440, 1, 1, 'only screen and (max-width: 768px)'),
 					'large' => array(320, 1, 1, 'only screen and (min-width: 1200px)')
+					// 'sizename' => array(width, x ratio, y ratio, media query)
 
-				),
-				'swiper' => array( // immer gefälligst standard + preview
-
-					'preview' => array(100, 16, 9, null),
-					'standard' => array(800, 16, 9, 'only screen and (min-width: 768px) and (max-width: 1200px)'),
-
-					'small' => array(1440, 5, 3, 'only screen and (max-width: 768px)'),
-					'large' => array(320, 1, 1, 'only screen and (min-width: 1200px)')
-
-				),
+				)*/
 
 			)
 

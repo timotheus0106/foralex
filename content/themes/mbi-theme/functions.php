@@ -4,8 +4,8 @@
 // Theme Setup/Settings
 // ----------------------------------------------------------------------------------
 
-require_once('includes/lib/settings.class.php');
-require_once('includes/lib/themesetup.class.php');
+require_once('includes/lib/Settings.class.php');
+require_once('includes/lib/Themesetup.class.php');
 
 $settings->init(array( // see settings for defaults
 
@@ -23,27 +23,27 @@ $settings->init(array( // see settings for defaults
 // ----------------------------------------------------------------------------------
 // Helper
 // ----------------------------------------------------------------------------------
-require_once('includes/lib/helper.class.php');
+require_once('includes/lib/Helper.class.php');
 
 // ----------------------------------------------------------------------------------
 // Loader
 // ----------------------------------------------------------------------------------
-require_once('includes/lib/loader.class.php');
+require_once('includes/lib/Loader.class.php');
 
 // ----------------------------------------------------------------------------------
 // Data
 // ----------------------------------------------------------------------------------
-require_once('includes/lib/data.class.php');
+require_once('includes/lib/Data.class.php');
 
 // ----------------------------------------------------------------------------------
 // Art Directed Images
 // ----------------------------------------------------------------------------------
 
-require_once('includes/lib/images.class.php');
-require_once('includes/lib/picture.class.php');
-require_once('includes/lib/artdirected.class.php');
+require_once('includes/lib/Images.class.php');
+require_once('includes/lib/Picture.class.php');
+require_once('includes/lib/Artdirected.class.php');
 
 // ----------------------------------------------------------------------------------
 // Project Functions
 // ----------------------------------------------------------------------------------
-require_once('includes/shortcodes.class.php');
+require_once('includes/Shortcodes.class.php');

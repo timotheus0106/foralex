@@ -4,7 +4,7 @@ Class Loader {
 
 	public function __construct() {
 
-		$this->loader = 'Hello.';
+		// asdf
 
 	}
 
