@@ -1,15 +1,20 @@
 $base-font-size: 16 !default;
 
 @mixin font-size($size) {
-
   font-size: $size + px;
 	font-size: ($size/$base-font-size) + em;
-
 }
 
 @mixin line-height($lineheight, $size) {
-
   line-height: $lineheight + px;
   line-height: ($lineheight/$size) + em;
+}
 
+
+@function em($pixel){
+	@return ($pixel/$base-font-size) + em
+}
+
+@function rem($pixel){
+	@return ($pixel/$base-font-size) + rem
 }

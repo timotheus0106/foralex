@@ -24,25 +24,25 @@ define([
 
 		containerHeight: function(reset) {
 
-	        var $container = $(module.container);
-	        var $current = $(module.item+'.active');
-	        // var $wrapper = $(module.wrapper);
+					var $container = $(module.container);
+					var $current = $(module.item+'.active');
+					// var $wrapper = $(module.wrapper);
 
 			if(reset === true) {
 
 				var height;
 
-		       	// if(_.exists($current.find('.googlemaps__container'))) {
+						// if(_.exists($current.find('.googlemaps__container'))) {
 
-		       	// 	_.pd($current.find(module.head).text());
+						// 	_.pd($current.find(module.head).text());
 
-		       	// 	height = $('.googlemaps__container').height();
+						// 	height = $('.googlemaps__container').height();
 
-		       	// } else {
+						// } else {
 
-		       		height = '';
+							height = '';
 
-		       	// }
+						// }
 
 				$container.css('height', height);
 
@@ -51,49 +51,49 @@ define([
 				// Calculate max-height
 				/*
 
-		        var heights = new Array();
+						var heights = new Array();
 
-		        $wrapper.each(function() {
-		            heights.push($(this).innerHeight());
-		        });
+						$wrapper.each(function() {
+								heights.push($(this).innerHeight());
+						});
 
-		        heights = heights.sort(_.sortNumber).reverse();
+						heights = heights.sort(_.sortNumber).reverse();
 
-		        var highest = heights[0];
+						var highest = heights[0];
 
-		        var head = $(module.head).innerHeight();
+						var head = $(module.head).innerHeight();
 
-		        $container.css('height', highest+head);
+						$container.css('height', highest+head);
 
-		        */
+						*/
 
-		       	// use height of current content + gmaps
+						// use height of current content + gmaps
 
-		       	var height;
+						var height;
 
-		       	if(_.exists($current.find('.googlemaps'))) {
+						if(_.exists($current.find('.googlemaps'))) {
 
-		       		height = $('.googlemaps__map').innerHeight();
+							height = $('.googlemaps__map').innerHeight();
 
-		       	} else {
+						} else {
 
-		       		height = module.getHeight($current);
+							height = module.getHeight($current);
 
-		       	}
+						}
 
-		       	var buttonHeight = $(module.head).innerHeight();
+						var buttonHeight = $(module.head).innerHeight();
 
-		       	if(mbiMq.mqTag == 'small' || $(module.container).hasClass('accordion--vertical-only')) {
+						if(mbiMq.mqTag == 'small' || $(module.container).hasClass('accordion--vertical-only')) {
 
-		       		buttonHeight *= $(module.item).length;
+							buttonHeight *= $(module.item).length;
 
-		       	}
+						}
 
-		       	// _.pd(height+buttonHeight);
+						// _.pd(height+buttonHeight);
 
-		       	$container.css('height', height+buttonHeight);
+						$container.css('height', height+buttonHeight);
 
-		    }
+				}
 
 		},
 		init: function() {

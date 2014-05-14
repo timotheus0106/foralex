@@ -13,9 +13,10 @@
 
 /** basic stuff **/
 @import "mbi/mbi";
-@import "partials/moodley-base";
+@import "partials/theme-base";
+@import "partials/theme-helper";
 @import "partials/layout";
-@import "partials/moodley-helper";
+
 
 
 
@@ -27,17 +28,8 @@
 * - edit default styles here
 * - no class selectors (except for adding default behaviour)
 **/
-@import "partials/modules/logo";
-@import "partials/modules/background-pattern";
-@import "partials/modules/sidebar";
-@import "partials/modules/flip-box";
 
-/** partials / modules **/
 
-@import "partials/modules/mbiswiper";
-@import "partials/modules/mbiaccordion";
-@import "partials/modules/mbipagination";
-@import "partials/modules/mbigooglemaps";
 
 /** nobody is perfect **/
 @import "partials/shame";
