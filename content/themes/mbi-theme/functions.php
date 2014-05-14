@@ -1,13 +1,17 @@
 <?php
 
 // ----------------------------------------------------------------------------------
-// Theme Setup/Settings
+// Before Settings Setup
 // ----------------------------------------------------------------------------------
 
 require_once('includes/lib/Settings.class.php');
 require_once('includes/lib/Themesetup.class.php');
 
-$settings->init(array( // see settings for defaults
+require_once('includes/lib/Images.class.php');
+
+require_once('includes/lib/Init.class.php');
+
+$settings->init(array(
 
 	'debug' => true,
 
@@ -20,30 +24,22 @@ $settings->init(array( // see settings for defaults
 
 ));
 
-// ----------------------------------------------------------------------------------
-// Helper
-// ----------------------------------------------------------------------------------
 require_once('includes/lib/Helper.class.php');
-
-// ----------------------------------------------------------------------------------
-// Loader
-// ----------------------------------------------------------------------------------
+require_once('includes/lib/Data.class.php');
 require_once('includes/lib/Loader.class.php');
 
 // ----------------------------------------------------------------------------------
-// Data
-// ----------------------------------------------------------------------------------
-require_once('includes/lib/Data.class.php');
-
-// ----------------------------------------------------------------------------------
-// Art Directed Images
+// After Settings Setup ($settings Dependency)
 // ----------------------------------------------------------------------------------
 
-require_once('includes/lib/Images.class.php');
+require_once('includes/lib/Javascript.class.php');
+
 require_once('includes/lib/Picture.class.php');
-require_once('includes/lib/Artdirected.class.php');
+require_once('includes/lib/BackgroundImage.class.php');
 
 // ----------------------------------------------------------------------------------
 // Project Functions
 // ----------------------------------------------------------------------------------
-require_once('includes/Shortcodes.class.php');
+
+// require_once('includes/KnappLoader.class.php');
+// require_once('includes/KnappPrepare.class.php');
