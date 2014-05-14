@@ -2,6 +2,8 @@
 
 /**
  * Picture extends Images
+ *
+ * @version 0.1.0
  */
 Class Picture extends Images {
 
@@ -9,29 +11,15 @@ Class Picture extends Images {
 
 		parent::__construct($_settings);
 
-		$this->init();
 
 	}
 
-	public function init() {
-
-		foreach($this->settings->get_option('picture') as $name => $options) {
-
-			foreach($options as $size => $option) {
-
-				$stage = $name.'_'.$size;
-
-				$add = $this->prepare_size($option[0], $option[1], $option[2], $stage, 'picture', $option[3]); // $width, $x, $y, $name, $group, $query
-
-				$size == 'preview' ? $retina = false : $retina = true;
-				$this->add_size($add, $retina);
-
-			}
-
-		}
-
-	}
-
+	/**
+	 * [picture description]
+	 * @param  [type]  $object [description]
+	 * @param  [type]  $size   [description]
+	 * @param  boolean $echo   [description]
+	 */
 	public function picture($object, $size, $echo = true) {
 
 		// break if no image object is given
@@ -39,50 +27,88 @@ Class Picture extends Images {
 			return false;
 		}
 
-		// id
-		$id = $object['id'];
+		if(!empty($object['custom'])) {
 
-		// alt text
-		if(!empty($object['alt'])) {
-			$alt = $object['alt'];
-		} else {
-			$alt = $object['title'];
-		}
+			if(is_array($object) && array_key_exists('landscape', $object['custom'])) {
 
-		$data = '<!-- BEGIN .picture -->';
-		$data .= '<span data-picture class="picture picture--'.$id.'" data-alt="'.$alt.'">';
-		$data .= '<img class="picture__preview" src="'.$object['sizes'][$size.'_preview'].'" alt="'.$alt.'" />';
+				$id = $object['post']->ID;
+				$data = '<!-- BEGIN .picture -->';
+				$data .= '<span data-picture class="picture picture--'.$id.'" data-alt="test">';
+				$data .= '<img class="picture__preview" src="'.$object['custom']['landscape']['sizes'][$size.'_landscape'].'" alt="test" />';
 
-		// iterate through registered image sizes for this picture element
-		$registered_picture_sizes = $this->settings->get_option('picture');
-		foreach($registered_picture_sizes[$size] as $key => $media) {
+				$registered_picture_sizes = $this->settings->get_option('artdirected');
 
-			if($key !== 'preview') {
+				foreach($registered_picture_sizes[$size] as $key => $media) {
 
-				// $object['']
+					$use_key = $key;
 
-				$data .= '<span data-src="'.$object['sizes'][$size.'_'.$key].'" data-media="'.$media[3].'"></span>';
+					if (empty($object['custom'][$key])) {
+
+						$use_key = substr($use_key, 0, strpos($use_key, '_')); // only with _suffix
+
+					}
+
+					$data .= '<span data-src="'.$object['custom'][$use_key]['sizes'][$size.'_'.$use_key].'" data-media="'.$media[3].'" alt="test"></span>';
+
+				}
+
+				$data .= '<noscript>';
+				$data .= '<img src="'.$object['custom']['landscape']['sizes'][$size.'_landscape'].'" alt="test" />';
+				$data .= '</noscript>';
+
+				$data .= '</span>';
+				$data .= '<!-- END .picture -->';
 
 			}
 
+		} else {
+
+			// id
+			$id = $object['id'];
+
+			// alt text
+			if(!empty($object['alt'])) {
+				$alt = $object['alt'];
+			} else {
+				$alt = $object['title'];
+			}
+
+			$data = '<!-- BEGIN .picture -->';
+			$data .= '<span data-picture class="picture picture--'.$id.'" data-alt="'.$alt.'">';
+			$data .= '<img class="picture__preview" src="'.$object['sizes'][$size.'_preview'].'" alt="'.$alt.'" />';
+
+			// iterate through registered image sizes for this picture element
+			$registered_picture_sizes = $this->settings->get_option('image');
+
+			foreach($registered_picture_sizes[$size] as $key => $media) {
+
+				if($key !== 'preview') {
+
+					$data .= '<span data-src="'.$object['sizes'][$size.'_'.$key].'" data-media="'.$media[3].'"></span>';
+
+				}
+
+			}
+
+			$data .= '<noscript>';
+
+			$data .= '<img src="'.$object['sizes'][$size.'_standard'].'" alt="'.$alt.'" />';
+			$data .= '</noscript>';
+
+			$data .= '</span>';
+			$data .= '<!-- END .picture -->';
+
+
 		}
-
-		$data .= '<noscript>';
-		$data .= '<img src="'.$object['sizes'][$size.'_standard'].'" alt="'.$alt.'" />';
-		$data .= '</noscript>';
-
-		$data .= '</span>';
-		$data .= '<!-- END .picture -->';
 
 		if($echo === true) {
 
 			echo $data;
 
-		} else {
-
-			return $data;
-
 		}
+
+		return true;
+
 
 	}
 

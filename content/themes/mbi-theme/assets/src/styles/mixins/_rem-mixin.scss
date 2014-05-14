@@ -1,0 +1,7 @@
+$base-font-size: 16 !default;
+
+@function rem($pixel){
+
+	@return ($pixel/$base-font-size) + rem
+
+}

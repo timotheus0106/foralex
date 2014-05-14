@@ -1,3 +1,10 @@
+/**
+ * mbiGooglemaps module
+ *
+ * @version 0.1.3
+ *
+ * @todo setup arguments on init
+ */
 define([
 	'jquery',
 	'async!http://maps.google.com/maps/api/js?sensor=false'
@@ -8,46 +15,50 @@ define([
 
 	var module = {
 
-		init: function() {
+		init: function(args) {
 
-			module.map();
+			module.map(args);
 
 		},
-		map: function() {
+		map: function(args) {
 
-			// console.log(google);
+			var wrapper = '.googlemaps';
+			var mapId = '.googlemaps__map';
 
-			var container = '.googlemaps__container';
-			var map = '.googlemaps__map';
-			var location = '.googlemaps__location';
+			var address = $(wrapper).attr('data-location');
 
 			var map;
+
 			var styles = [
 				{
 					'elementType': 'geometry.fill',
 					'stylers': [
 						{'visibility': 'simplified'}
 					]
-				},{
-						'featureType': 'poi',
-						'elementType': 'labels.icon',
-						'stylers': [
+				},
+				{
+					'featureType': 'poi',
+					'elementType': 'labels.icon',
+					'stylers': [
 						{'visibility': 'off'}
 					]
-				},{
+				},
+				{
 					'featureType': 'water',
 					'stylers': [
 						{'visibility': 'simplified'},
 						{'lightness': 83}
 					]
-				},{
+				},
+				{
 					'featureType': 'poi.park',
 					'stylers': [
 						{'visibility': 'simplified'},
 						{'lightness': 24},
 						{'saturation': -66}
 					]
-				},{
+				},
+				{
 					'featureType': 'transit.station',
 					'elementType': 'labels.icon',
 					'stylers': [
@@ -79,7 +90,8 @@ define([
 
 			};
 
-			map = new google.maps.Map(document.getElementById('map'), mapOptions);
+			var mapMatches = document.querySelectorAll('div'+mapId);
+			map = new google.maps.Map(mapMatches[0], mapOptions);
 
 			var imageL = new google.maps.MarkerImage('http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
 
@@ -89,8 +101,6 @@ define([
 			);
 
 			var geocoder = new google.maps.Geocoder();
-
-			var address = $(location).text();
 
 			var lat;
 			var lng;

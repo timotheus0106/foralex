@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Data
+ *
+ * @version 0.1.0
+ */
 Class Data {
 
 	public $get;

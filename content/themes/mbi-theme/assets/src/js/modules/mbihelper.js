@@ -1,3 +1,8 @@
+/**
+ * mbiHelper
+ *
+ * @version 0.1.2
+ */
 define([
 	'jquery',
 	'modules/mbiconfig',

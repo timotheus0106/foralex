@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Themesetup
+ *
+ * @version 0.1.0
+ */
 Class ThemeSetup {
 
 	public $settings;
@@ -36,6 +41,9 @@ Class ThemeSetup {
 		// Gallery Style (what?)
 		add_filter('use_default_gallery_style', '__return_false');
 
+		// Beautify Search Redirects
+		add_action('template_redirect', array($this, 'beautify_search_redirect'));
+
 		// Remove width/height from images
 		add_filter('post_thumbnail_html', array($this, 'remove_thumbnail_dimensions'), 10);
 
@@ -44,7 +52,9 @@ Class ThemeSetup {
 
 		// create images only on demand
 		if($this->settings->get_option('dynamic_images') === true) {
+
 			$this->images_on_demand();
+
 		}
 
 		// Remove Comments
@@ -76,8 +86,10 @@ Class ThemeSetup {
 
 		}
 
-		// @todo make this work!!!
+		// remove images sizes
 		add_filter('intermediate_image_sizes_advanced', array($this, 'remove_image_sizes'));
+
+		add_action('init', array($this, 'rewrite_rules'));
 
 	}
 
@@ -88,14 +100,17 @@ Class ThemeSetup {
 		// Deregister WPs jQuery
 		wp_deregister_script('jquery'); // Deregister WPs jQuery, because it is handled by requirejs
 
-		//head-js: scripts that need to be in head (e.g. modernizr, requirejs)
+		// head-js: scripts that need to be in head (e.g. modernizr, requirejs)
 		wp_enqueue_script('head-js', get_template_directory_uri(). '/assets/build/js/head.js', '', '', false);
 
-		//main-js: all the other scripts are packaged here
+		// main-js: all the other scripts are packaged here
 		wp_enqueue_script('main-js', get_template_directory_uri(). '/assets/build/js/main.js', '', '', true);
-		wp_localize_script( 'main-js', 'baseUrl', array(
+		wp_localize_script('main-js', 'baseUrl', array(
 			'path' => get_stylesheet_directory_uri() . '/assets/build/js'
 		));
+
+		// style-css: in head (self explanatory this is)
+		// wp_enqueue_style('core', get_template_directory_uri(). '/style.css', false); // set by hand for now!
 
 	}
 
@@ -199,6 +214,7 @@ Class ThemeSetup {
 		unset($sizes['large']);
 
 		return $sizes;
+
 	}
 
 	// --------------------------------------------------
@@ -245,12 +261,9 @@ Class ThemeSetup {
 
 	public function sanitize_new_filename($filename, $filename_raw) {
 
-	    // $file = sanitize_file_name($filename);
-		// $new = iconv('UTF-8', 'ASCII//TRANSLIT', $filename);
-
 		$new = str_ireplace(array('ä', 'ü', 'ö', 'ß'), array('ae', 'ue', 'oe', 'ss'), $filename);
 
-	    return $new;
+		return $new;
 
 	}
 
@@ -333,6 +346,18 @@ Class ThemeSetup {
 		}
 
 		return $meta;
+	}
+
+	// --------------------------------------------------
+
+	public function rewrite_rules() {
+
+		foreach($this->settings->get_option('rewrite_rules') as $rule) {
+
+			add_rewrite_rule($rule[0], $rule[1], $rule[2]);
+
+		}
+
 	}
 
 

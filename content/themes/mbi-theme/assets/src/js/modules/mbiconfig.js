@@ -1,3 +1,8 @@
+/**
+ * mbiConfig module
+ *
+ * @version 0.1.2
+ */
 define([
 	'module'
 ], function(

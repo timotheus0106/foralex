@@ -1,11 +1,16 @@
+/**
+ * mbiSwiper module
+ *
+ * @version 0.1.2
+ */
 define([
 	'jquery',
 	'modules/mbihelper',
 	'modules/mbiconfig',
 	'modules/mbimq',
-	'vendor/jquery.swiper',
-	'vendor/jquery.debounce',
-	'vendor/viewport'
+	'vendor_swiper',
+	'vendor_debounce',
+	'vendor_viewport'
 ], function(
 	$,
 	_,

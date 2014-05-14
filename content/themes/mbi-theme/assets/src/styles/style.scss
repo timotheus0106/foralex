@@ -34,7 +34,10 @@
 
 /** partials / modules **/
 
-
+@import "partials/modules/mbiswiper";
+@import "partials/modules/mbiaccordion";
+@import "partials/modules/mbipagination";
+@import "partials/modules/mbigooglemaps";
 
 /** nobody is perfect **/
 @import "partials/shame";

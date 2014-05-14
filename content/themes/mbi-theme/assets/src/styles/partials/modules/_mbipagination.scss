@@ -1,0 +1,34 @@
+.sticky-pagination {
+
+	position: fixed;
+	top: em(20);
+	right: em(20);
+	z-index: 100000;
+
+	@extend %ui;
+
+	.item {
+
+		width: em(7);
+		height: em(7);
+
+		display: block;
+		padding: em(10);
+		margin-bottom: em(6);
+
+		background: rgba(0,0,0,0.5);
+		border-radius: 100%;
+
+		@include transition (background-color 250ms ease-in-out);
+		@extend %antiflicker;
+		@extend %ui--button;
+
+		&.active {
+
+			background: rgba(255,255,255,0.75);
+
+		}
+
+	}
+
+}

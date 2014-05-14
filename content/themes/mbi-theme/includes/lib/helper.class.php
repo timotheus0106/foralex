@@ -1,15 +1,33 @@
 <?php
 
+/**
+ * Helper
+ *
+ * @version 0.1.0
+ */
 Class Helper {
 
+	/**
+	 * [$settings description]
+	 * @var [type]
+	 */
 	public $settings;
 
+	/**
+	 * [__construct description]
+	 * @param Settings $_settings [description]
+	 */
 	public function __construct(Settings $_settings) {
 
 		$this->settings = $_settings;
 
 	}
 
+	/**
+	 * [banner description]
+	 * @param  boolean $force [description]
+	 * @return [type]         [description]
+	 */
 	public function banner($force = false) {
 
 		if($this->settings->get_option('banner') === true || $force === true) {
@@ -34,6 +52,12 @@ Class Helper {
 
 	}
 
+	/**
+	 * [print_debug description]
+	 * @param  [type]  $var [description]
+	 * @param  boolean $die [description]
+	 * @return [type]       [description]
+	 */
 	public function print_debug($var, $die = false) {
 
 		if(WP_DEBUG === true) {
@@ -44,7 +68,7 @@ Class Helper {
 					$var = 'mbi_print_debug: var empty';
 				}
 
-				$echo = '<pre>';
+				$echo = '<pre style="font-family: Source Code Pro, Consolas, Courier New, monospaced; font-size: 12px; background: #333; color: #eee;">';
 				$echo .= print_r($var, true);
 				$echo .= '</pre>';
 
@@ -87,19 +111,28 @@ Class Helper {
 
 	}
 
+	/**
+	 * [get_the_slug description]
+	 * @return [type] [description]
+	 */
 	public function get_the_slug() {
 
 		global $post;
 
-		if ( is_single() || is_page() ) {
+		// if(is_single() || is_page()) {
 			return $post->post_name;
-		}
-		else {
-			return "";
-		}
+		// }
+		// else {
+		// 	return "";
+		// }
 
 	}
 
+	/**
+	 * [split_by_more description]
+	 * @param  [type] $text [description]
+	 * @return [type]       [description]
+	 */
 	public function split_by_more($text) {
 
 		$parts = explode('<!--more-->', $text);
@@ -108,6 +141,13 @@ Class Helper {
 
 	}
 
+	/**
+	 * [word_limiter description]
+	 * @param  [type]  $str      [description]
+	 * @param  integer $limit    [description]
+	 * @param  string  $end_char [description]
+	 * @return [type]            [description]
+	 */
 	public function word_limiter($str, $limit = 16, $end_char = '&#8230;') {
 
 		if (trim($str) == '')
@@ -126,6 +166,13 @@ Class Helper {
 
 	}
 
+	/**
+	 * [character_limiter description]
+	 * @param  [type]  $str      [description]
+	 * @param  integer $n        [description]
+	 * @param  string  $end_char [description]
+	 * @return [type]            [description]
+	 */
 	public function character_limiter($str, $n = 128, $end_char = '&#8230;') {
 
 		if (strlen($str) < $n) {

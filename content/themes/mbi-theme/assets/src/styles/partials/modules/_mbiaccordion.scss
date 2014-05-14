@@ -1,0 +1,114 @@
+.accordion {
+
+	@include transition(height 250ms ease-in-out);
+    @extend %antiflicker;
+
+    .accordion__item {
+
+        &.active {
+            .accordion__head {
+                color: black;
+                background: silver;
+            }
+            .accordion__content {
+                visibility: visible;
+            }
+        }
+    }
+    .accordion__head {
+        color: red;
+        background: gray;
+        text-align: center;
+        height: em(40);
+        padding: em(10);
+        @extend %ui;
+        @extend %ui--button;
+    }
+    .accordion__content {
+        background: white;
+        visibility: hidden;
+        .content__wrapper {
+            width: 100%;
+        }
+    }
+}
+
+.accordion--vertical {
+    .accordion__item {
+        .accordion__head {
+            text-align: center;
+        }
+        .accordion__content {
+            max-height: 0;
+            overflow: hidden;
+            @include transition(max-height 250ms cubic-bezier(0.165, 0.84, 0.44, 1) 250ms);
+            @extend %antiflicker;
+        }
+        &.active {
+            .accordion__content {
+                max-height: em(1000);
+            }
+        }
+    }
+}
+
+.accordion--horizontal {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .accordion__item {
+        &.active {
+            .accordion__content {
+                z-index: 10;
+                opacity: 1;
+                // transition: opacity 250ms cubic-bezier(0.165, 0.840, 0.440, 1.000) 0ms, z-index 250ms linear 0ms;
+
+            }
+        }
+    }
+    .accordion__head {
+        width: 100%;
+        height: em(40);
+        float: left;
+    }
+    .accordion__content {
+        position: absolute;
+        top: em(40);
+        left: 0;
+        width: 100%;
+        z-index: 1;
+        opacity: 0;
+        @include transition (opacity 250ms cubic-bezier(0.165, 0.84, 0.44, 1) 125ms, z-index 250ms linear 0ms, visibility 250ms linear 0ms);
+        @extend %antiflicker;
+    }
+    &.accordion--1-items {
+        .accordion__head {
+            width: 100%;
+        }
+    }
+    &.accordion--2-items {
+        .accordion__head {
+            width: 100 / 2 * 1%;
+        }
+    }
+    &.accordion--3-items {
+        .accordion__head {
+            width: 100 / 3 * 1%;
+        }
+    }
+    &.accordion--4-items {
+        .accordion__head {
+            width: 100 / 4 * 1%;
+        }
+    }
+    &.accordion--5-items {
+        .accordion__head {
+            width: 100 / 5 * 1%;
+        }
+    }
+    &.accordion--6-items {
+        .accordion__head {
+            width: 100 / 6 * 1%;
+        }
+    }
+}

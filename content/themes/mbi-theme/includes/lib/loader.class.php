@@ -1,13 +1,20 @@
 <?php
 
+/**
+ * Loader
+ *
+ * @version 0.1.0
+ */
 Class Loader {
 
 	public function __construct() {
 
-		// asdf
-
 	}
 
+	/**
+	 * [get_post_data description]
+	 * @param  [type] $id [description]
+	 */
 	public function get_post_data($id = null) {
 
 		if(!empty($id)) {
@@ -17,6 +24,7 @@ Class Loader {
 
 		} else {
 
+			$id = get_the_ID();
 			$post = get_post();
 			$custom = get_fields();
 
@@ -24,6 +32,7 @@ Class Loader {
 
 		$data = array(
 
+			'id' => $id,
 			'post' => $post,
 			'custom' => $custom
 

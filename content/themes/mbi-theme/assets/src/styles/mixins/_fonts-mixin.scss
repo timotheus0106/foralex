@@ -1,24 +1,15 @@
+$base-font-size: 16 !default;
 
-// $base-font-size : 16 !default;
+@mixin font-size($size) {
 
-// @mixin font-size($size) {
-//   font-size: $size + px;
-//   font-size: ($size/$base-font-size) + rem;
-// }
+  font-size: $size + px;
+	font-size: ($size/$base-font-size) + em;
 
-/**
- * Create a fully formed type style (sizing and vertical rhythm) by passing in a
- * single value, e.g.:
- *
-   `@include font-size(10px);`
- *
- * Thanks to @redclov3r for the `line-height` Sass:
- * twitter.com/redclov3r/status/250301539321798657
- */
-@mixin font-size($font-size, $line-height:true){
-    font-size:$font-size;
-    font-size:($font-size / $base-font-size)*1rem;
-    @if $line-height == true{
-        line-height:ceil($font-size / $base-line-height) * ($base-line-height / $font-size);
-    }
+}
+
+@mixin line-height($lineheight, $size) {
+
+  line-height: $lineheight + px;
+  line-height: ($lineheight/$size) + em;
+
 }

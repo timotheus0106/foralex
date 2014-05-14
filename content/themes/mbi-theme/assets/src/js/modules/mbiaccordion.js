@@ -1,3 +1,8 @@
+/**
+ * mbiAccordion module
+ *
+ * @version 0.1.2
+ */
 define([
 	'jquery',
 	'modules/mbihelper',
@@ -25,11 +30,42 @@ define([
 
 			if(reset === true) {
 
-				var height = '';
+				var height;
+
+		       	// if(_.exists($current.find('.googlemaps__container'))) {
+
+		       	// 	_.pd($current.find(module.head).text());
+
+		       	// 	height = $('.googlemaps__container').height();
+
+		       	// } else {
+
+		       		height = '';
+
+		       	// }
 
 				$container.css('height', height);
 
 			} else {
+
+				// Calculate max-height
+				/*
+
+		        var heights = new Array();
+
+		        $wrapper.each(function() {
+		            heights.push($(this).innerHeight());
+		        });
+
+		        heights = heights.sort(_.sortNumber).reverse();
+
+		        var highest = heights[0];
+
+		        var head = $(module.head).innerHeight();
+
+		        $container.css('height', highest+head);
+
+		        */
 
 		       	// use height of current content + gmaps
 
@@ -45,21 +81,17 @@ define([
 
 		       	}
 
+		       	var buttonHeight = $(module.head).innerHeight();
+
 		       	if(mbiMq.mqTag == 'small' || $(module.container).hasClass('accordion--vertical-only')) {
 
-		       		$(module.head).each(function() {
-
-		       			height += $(this).innerHeight();
-
-		       		});
-
-		       	} else {
-
-		       		height += $(module.head).innerHeight();
+		       		buttonHeight *= $(module.item).length;
 
 		       	}
 
-		       	$container.css('height', height);
+		       	// _.pd(height+buttonHeight);
+
+		       	$container.css('height', height+buttonHeight);
 
 		    }
 

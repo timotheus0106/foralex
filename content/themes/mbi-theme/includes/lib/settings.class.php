@@ -1,24 +1,34 @@
 <?php
 
+/**
+ * Settings
+ *
+ * @version 0.1.0
+ */
 Class Settings {
 
 	public $settings;
 
+	/**
+	 * [__construct description]
+	 */
 	public function __construct() {
+
+		$baseUrl = get_template_directory_uri().'/assets/build/js/';
 
 		// setting defaults (set in theme setup settings call, not within here)
 
 		$this->settings = (object)array(
 
-			'debug' => false,
+			'debug' => false, // mbi debug (pd, etc.)
 
-			'comments' => false,
-			'widgets' => false,
-			'banner' => true,
-			'dynamic_images' => true, // this is important, better not turn it to false!
+			'comments' => false, // enable comments
+			'widgets' => false, // enable widget
+			'page_tags' => false, // enable tags for pages
+			'banner' => true, // mbi banner
+			'dynamic_images' => true, // dynamic image creation, should always be enabled to keep amount of images down
 
-			'page_tags' => false,
-
+			// which menus to register
 			'menus' => array(
 
 				'main_menu' => 'Main Menu',
@@ -29,10 +39,10 @@ Class Settings {
 
 			// to register as breakpoints within js
 			// for now no overlapping queries are possible
-			// @todo make this work for overlapping breakpoints
 			'breakpoints' => array(
 
-				'small' => 'only screen and (max-width: 768px)',
+				'small' => 'only screen and (max-width: 768px)', // for now this is mandatory
+
 				'medium' => 'only screen and (min-width: 768px) and (max-width: 1200px)',
 				'large' => 'only screen and (min-width: 1200px)'
 
@@ -53,20 +63,28 @@ Class Settings {
 			),
 
 			// only for picture element breakpoints
-			'picture' => array(
-
-				/*
+			'image' => array(
 
 				'grid' => array( // immer gefälligst standard + preview
 
 					'preview' => array(100, 1, 1, null),
-					'standard' => array(800, 1, 1, 'only screen and (min-width: 768px) and (max-width: 1200px)'),
+					'standard' => array(960, 1, 1, 'only screen and (min-width: 768px) and (max-width: 1200px)'),
 
-					'small' => array(1440, 1, 1, 'only screen and (max-width: 768px)'),
-					'large' => array(320, 1, 1, 'only screen and (min-width: 1200px)')
-					// 'sizename' => array(width, x ratio, y ratio, media query)
+					'small' => array(420, 1, 1, 'only screen and (max-width: 768px)'),
+					'large' => array(1440, 1, 1, 'only screen and (min-width: 1200px)')
 
-				)*/
+				)
+
+			),
+
+			// require js (gets populated by init())
+			'requirejs' => array(),
+
+			// rewrite rules
+			'rewrite_rules' => array(
+
+				array('admin/?$', 'wp-admin', 'top'),
+		        array('login/?$', 'wp-login.php', 'top')
 
 			)
 
@@ -74,13 +92,39 @@ Class Settings {
 
 	}
 
+	/**
+	 * [init description]
+	 * @param  [type] $_settings [description]
+	 */
 	public function init($_settings) {
 
 		foreach($_settings as $key => $value) {
 
-			$this->set_option($key, $value);
+			switch($key) {
+
+				case 'rewrite_rules':
+
+					$defaults = $this->get_option($key);
+					$combined = array_merge($defaults, $value);
+					$this->set_option($key, $combined);
+
+					break;
+				case 'requirejs':
+
+					// do not allow requirejs in init()
+
+					break;
+				default:
+
+					$this->set_option($key, $value);
+
+					break;
+
+			}
 
 		}
+
+		$this->set_option('requirejs', Init::get_require_paths());
 
 	}
 

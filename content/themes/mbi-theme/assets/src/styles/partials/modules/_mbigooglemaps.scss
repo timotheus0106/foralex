@@ -1,0 +1,25 @@
+.googlemaps {
+
+    width: 100%;
+    // height: em(400);
+
+    .googlemaps__location {
+
+        display: none;
+
+    }
+    .googlemaps__container {
+
+        background-color: #DDD;
+        height: 100%;
+
+    }
+    .googlemaps__map {
+
+        width: 100%;
+        padding-bottom: 25%;
+        height: 0;
+
+    }
+
+}
