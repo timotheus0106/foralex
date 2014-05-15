@@ -16,10 +16,10 @@
 // ----------------------------------------------------------------------------------
 
 ?><!DOCTYPE html>
-<!--[if lt IE 9]><html class="no-js ie8" lang="<?php echo WPLANG; ?>"><![endif]-->
-<!--[if IE 9]><html class="no-js ie9" lang="<?php echo WPLANG; ?>"><![endif]-->
-<!--[if IE 10]><html class="no-js ie10" lang="<?php echo WPLANG; ?>"><![endif]-->
-<!--[if !IE]> --><html class="no-js" lang="<?php echo WPLANG; ?>"><!-- <![endif]-->
+<!--[if lt IE 9]><html class="no-js ie8" lang="<?php language_attributes(); ?>"><![endif]-->
+<!--[if IE 9]><html class="no-js ie9" lang="<?php language_attributes(); ?>"><![endif]-->
+<!--[if IE 10]><html class="no-js ie10" lang="<?php language_attributes(); ?>"><![endif]-->
+<!--[if !IE]> --><html class="no-js" lang="<?php language_attributes(); ?>"><!-- <![endif]-->
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
