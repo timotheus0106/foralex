@@ -7,10 +7,9 @@
  */
 Class Picture extends Images {
 
-	public function __construct(Settings $_settings) {
+	public function __construct() {
 
-		parent::__construct($_settings);
-
+		// parent::__construct($_settings);
 
 	}
 
@@ -20,7 +19,9 @@ Class Picture extends Images {
 	 * @param  [type]  $size   [description]
 	 * @param  boolean $echo   [description]
 	 */
-	public function picture($object, $size, $echo = true) {
+	public static function picture($object, $size, $echo = true) {
+
+		$settings = Settings::getInstance();
 
 		// break if no image object is given
 		if(!isset($object) || empty($object)) {
@@ -36,7 +37,8 @@ Class Picture extends Images {
 				$data .= '<span data-picture class="picture picture--'.$id.'" data-alt="test">';
 				$data .= '<img class="picture__preview" src="'.$object['custom']['landscape']['sizes'][$size.'_landscape'].'" alt="test" />';
 
-				$registered_picture_sizes = $this->settings->get_option('artdirected');
+				// $registered_picture_sizes = $this->settings->get('artdirected');
+				$registered_picture_sizes = $settings->get('artdirectedImages');
 
 				foreach($registered_picture_sizes[$size] as $key => $media) {
 
@@ -48,12 +50,12 @@ Class Picture extends Images {
 
 					}
 
-					$data .= '<span data-src="'.$object['custom'][$use_key]['sizes'][$size.'_'.$use_key].'" data-media="'.$media[3].'" alt="test"></span>';
+					$data .= '<span data-src="' . $object['custom'][$use_key]['sizes'][$size . '_' . $use_key] . '" data-media="' . $media[3] . '" alt="test"></span>';
 
 				}
 
 				$data .= '<noscript>';
-				$data .= '<img src="'.$object['custom']['landscape']['sizes'][$size.'_landscape'].'" alt="test" />';
+				$data .= '<img src="' . $object['custom']['landscape']['sizes'][$size . '_landscape'] . '" alt="test" />';
 				$data .= '</noscript>';
 
 				$data .= '</span>';
@@ -62,6 +64,9 @@ Class Picture extends Images {
 			}
 
 		} else {
+
+			// echo "obj:";
+			// pd($obj);
 
 			// id
 			$id = $object['id'];
@@ -78,47 +83,42 @@ Class Picture extends Images {
 			$data .= '<img class="picture__preview" src="'.$object['sizes'][$size.'_preview'].'" alt="'.$alt.'" />';
 
 			// iterate through registered image sizes for this picture element
-			$registered_picture_sizes = $this->settings->get_option('image');
+			// $registered_picture_sizes = $this->settings->get('image');
+			$registered_picture_sizes = $settings->get('singleImages');
 
 			foreach($registered_picture_sizes[$size] as $key => $media) {
-
 				if($key !== 'preview') {
-
-					$data .= '<span data-src="'.$object['sizes'][$size.'_'.$key].'" data-media="'.$media[3].'"></span>';
-
+					$data .= '<span data-src="'. $object['sizes'][$size.'_'.$key].'" data-media="'. $media[3] .'"></span>';
 				}
-
 			}
 
 			$data .= '<noscript>';
-
 			$data .= '<img src="'.$object['sizes'][$size.'_standard'].'" alt="'.$alt.'" />';
 			$data .= '</noscript>';
 
 			$data .= '</span>';
 			$data .= '<!-- END .picture -->';
 
-
 		}
 
-		if($echo === true) {
-
+		if($echo) {
 			echo $data;
-
+		}else{
+			return $data;
 		}
-
 		return true;
-
 
 	}
 
 }
 
-$picture = new Picture($settings);
+//$picture = new Picture($settings);
 
 function picture($object, $size, $echo = true) {
 
-	global $picture;
-	$picture->picture($object, $size, $echo);
+	// global $picture;
+	// $picture->picture($object, $size, $echo);
+
+	Picture::picture($object, $size, $echo);
 
 }

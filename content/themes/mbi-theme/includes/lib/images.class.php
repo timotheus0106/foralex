@@ -7,42 +7,26 @@
  */
 Class Images {
 
-	public $settings;
+	public function __construct() { }
 
-	public $sizes; // wordpress image sizes
-	public $css;
-
-	public function __construct(Settings $_settings) {
-
-		$this->settings = $_settings;
-
-	}
-
-	public function add_size($size, $retina = true) {
-
-		add_image_size($size['name'], $size['width'], $size['height'], true);
+	public static function add_size($size, $retina = true) {
+		add_image_size($size['name'], $size['width'], $size['height'], false);
 
 		if($retina === true) {
-			add_image_size($size['name'].'@2x', $size['width']*2, $size['height']*2, true);
+			add_image_size($size['name'].'@2x', $size['width']*2, ($size['height'] != 9999) ? $size['height']*2 : $size['height'], false);
 		}
-
 	}
 
-	public function prepare_size($width, $x, $y, $name, $group, $query) {
-
-		$height = (int)($width/$x*$y);
+	public static function prepare_size($width, $x, $y, $name, $group, $query) {
+		$height = ($y != 0) ? (int)($width/$x*$y) : 9999;
 
 		return array(
-
 			'name' => $name,
 			'width' => $width,
 			'height' => $height,
 			'ratio' => $x.':'.$y,
 			'query' => $query,
 			'group' => $group
-
 		);
-
 	}
-
 }

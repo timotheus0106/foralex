@@ -21,17 +21,17 @@ define([
 
 	var module = {
 
-		swiperObjects: new Object(),
+		swiperObjects: {},
 		swiperElements: '.swiper-container',
 
 		createSwiper: function(name, options) {
 
 			var element = $('#'+name);
 
-			module.swiperObjects[name] = new Object();
+			module.swiperObjects[name] = {};
 			module.swiperObjects[name].settings = options;
 
-			var args = new Object();
+			var args = {};
 
 			// iterate through base options
 
@@ -121,7 +121,7 @@ define([
 
 					if(options.states[key] == undefined) { // if there is no state for mq
 
-						module.swiperObjects[name].settings.states[key] = new Object();
+						module.swiperObjects[name].settings.states[key] = {};
 
 					} else { // pass on state to settings
 
@@ -149,7 +149,7 @@ define([
 
 			} else { // if no states exist
 
-				module.swiperObjects[name].settings['states'] = new Object();
+				module.swiperObjects[name].settings['states'] = {};
 
 				$.each(mbiMq.mq, function(key, value) { // create empty state for each mq
 

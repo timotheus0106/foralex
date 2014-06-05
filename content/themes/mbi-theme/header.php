@@ -43,10 +43,11 @@
 	<?php wp_head(); ?>
 
 	<?php
-	/**
-	 * Outputs style for background images
-	 */
-	$backgroundImage->echoAD(); ?>
+		/**
+		 * Background image styles output
+		 */
+		//$backgroundImage->printArtDirectedImageCSS(); 
+	?>
 
 </head>
 <body>

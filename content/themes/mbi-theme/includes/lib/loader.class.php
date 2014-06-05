@@ -15,7 +15,7 @@ Class Loader {
 	 * [get_post_data description]
 	 * @param  [type] $id [description]
 	 */
-	public function get_post_data($id = null) {
+	public static function get_post_data($id = null) {
 
 		if(!empty($id)) {
 

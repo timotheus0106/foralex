@@ -7,14 +7,21 @@ Class Shortcodes {
         /**
          * register your shortcodes here
          **/
-        add_shortcode('say_hello',  array($this, 'sayHelloShortcode'));
+        add_shortcode('faq',  array($this, 'faqShortcode'));
 
     }
 
-    public function sayHelloShortcode($atts, $content = null) {
-        return 'I am happy to say hello!';
+
+    public function faqShortcode($atts, $content = null) {
+
+        $completeContent = '<span class="link js_jobs_faq_openPopup">' . $content . '</span><div class="job__info--faq--popup--wrapper"><div class="job__info--faq--popup"><div class="job__info--faq--popup--title">' . $atts['title'] . '</div><div class="closingX js_jobs_faq_closePopup"></div><div class="job__info--faq--popup--text">' . $atts['content'] . '</div> </div></div>';
+
+
+
+        return $completeContent;
+
     }
 
 }
 
-$MbiShortcodes = new Mbi_Shortcodes(); ?>
+$shortcodes = new Shortcodes(); ?>

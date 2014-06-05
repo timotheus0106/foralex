@@ -14,26 +14,57 @@ Class ThemeSetup {
 		// Dependency Injection of Settings
 		$this->settings = $_settings;
 
-		// init setup on init of wordpress theme
-		add_action('after_setup_theme', array($this, 'init'));
+
+
+		// hooks
+		add_action('init', array($this, 'on_init'));
+		add_action('after_setup_theme', array($this, 'on_after_setup_theme'));
 
 	}
 
-	// --------------------------------------------------
-
-	public function init() {
-
-		// Enable Thumbnails
-		// add_theme_support('post-thumbnails');
-
-		// Enable Menus
-		add_theme_support('menus');
+	public function on_init() {
 
 		// Cleanup Head
 		add_action('init', array($this, 'cleanup_head'));
 
+		// Add Tags to Page
+		if($this->settings->get('page_tags') === true) {
+			add_action('init', array($this, 'tags_support_all'));
+			add_action('pre_get_posts', array($this, 'tags_support_query'));
+		}
+
+		/**
+		* Redirects search results from /?s=query to /search/query/, converts %20 to +
+		*
+		* @link http://txfx.net/wordpress-plugins/nice-search/
+		*/
+		if($this->settings->get('beautifySearch') === true) {
+			add_action('init', array($this, 'beautify_search_redirect'), 1);
+		}
+
+		add_action('init', array($this, 'add_rewrite_rules'));
+
+		if(count($this->settings->get('artdirectedImages')) > 0) {
+			$this->initArtdirectedImages();
+		}
+
+		if(count($this->settings->get('singleImages')) > 0) {
+			$this->initSingleImages();
+		}
+
+	}
+
+
+
+	// --------------------------------------------------
+
+	public function on_after_setup_theme() {
+
+		// Enable Menus
+		add_theme_support('menus');
+
 		// Register Assets
-		add_action('wp_enqueue_scripts', array($this, 'assets'));
+		add_action('wp_enqueue_scripts', array($this, 'load_scripts'));
 
 		// Hide Admin Bar by default
 		add_filter('show_admin_bar', '__return_false');
@@ -41,61 +72,33 @@ Class ThemeSetup {
 		// Gallery Style (what?)
 		add_filter('use_default_gallery_style', '__return_false');
 
-		// Beautify Search Redirects
-		add_action('template_redirect', array($this, 'beautify_search_redirect'));
-
-		// Remove width/height from images
-		add_filter('post_thumbnail_html', array($this, 'remove_thumbnail_dimensions'), 10);
+		// Remove width/height attributes from images
+		if($this->settings->get('removeImageAttributes')){
+			add_filter('post_thumbnail_html', array($this, 'remove_thumbnail_dimensions'), 10);
+		}
 
 		// Register Menus
-		register_nav_menus($this->settings->get_option('menus'));
+		register_nav_menus($this->settings->get('menus'));
 
 		// create images only on demand
-		if($this->settings->get_option('dynamic_images') === true) {
-
-			$this->images_on_demand();
-
+		if($this->settings->get('dynamic_images') === true) {
+			// $this->images_on_demand();
 		}
 
 		// Remove Comments
-		if($this->settings->get_option('comments') === false) {
-
+		if($this->settings->get('comments') === false) {
 			$this->remove_comments();
-
-		}
-
-		// Add Tags to Page
-		if($this->settings->get_option('page_tags') === true) {
-
-			add_action('init', array($this, 'tags_support_all'));
-			add_action('pre_get_posts', array($this, 'tags_support_query'));
-
 		}
 
 		// remove widgets
-		if($this->settings->get_option('widgets') === false) {
-
+		if($this->settings->get('widgets') === false) {
 			add_action('widgets_init', array($this, 'cleanup_widgets'), 1);
-
 		}
-
-		// remove widgets
-		if($this->settings->get_option('beautifysearch') === true) {
-
-			add_action('init', array($this, 'beautify_search_redirect'), 1);
-
-		}
-
-		// remove images sizes
-		add_filter('intermediate_image_sizes_advanced', array($this, 'remove_image_sizes'));
-
-		add_action('init', array($this, 'rewrite_rules'));
-
 	}
 
 	// --------------------------------------------------
 
-	public function assets() {
+	public function load_scripts() {
 
 		// Deregister WPs jQuery
 		wp_deregister_script('jquery'); // Deregister WPs jQuery, because it is handled by requirejs
@@ -108,16 +111,11 @@ Class ThemeSetup {
 		wp_localize_script('main-js', 'baseUrl', array(
 			'path' => get_stylesheet_directory_uri() . '/assets/build/js'
 		));
-
-		// style-css: in head (self explanatory this is)
-		// wp_enqueue_style('core', get_template_directory_uri(). '/style.css', false); // set by hand for now!
-
 	}
 
 	// --------------------------------------------------
 
 	public function cleanup_widgets() {
-
 		unregister_widget('WP_Widget_Pages');
 		unregister_widget('WP_Widget_Calendar');
 		unregister_widget('WP_Widget_Archives');
@@ -130,13 +128,11 @@ Class ThemeSetup {
 		unregister_widget('WP_Widget_Recent_Comments');
 		unregister_widget('WP_Widget_RSS');
 		unregister_widget('WP_Widget_Tag_Cloud');
-
 	}
 
 	// --------------------------------------------------
 
 	public function cleanup_head() {
-
 		remove_action('wp_head', 'feed_links_extra', 3); // Display the links to the extra feeds such as category feeds
 		remove_action('wp_head', 'feed_links', 2); // Display the links to the general feeds: Post and Comment Feed
 		remove_action('wp_head', 'rsd_link'); // Display the link to the Really Simple Discovery service endpoint, EditURI link
@@ -189,66 +185,50 @@ Class ThemeSetup {
 		global $wp_rewrite;
 
 		if (!isset($wp_rewrite) || !is_object($wp_rewrite) || !$wp_rewrite->using_permalinks()) {
-
 			return;
-
 		}
 
 		$search_base = $wp_rewrite->search_base;
 
 		if (is_search() && !is_admin() && strpos($_SERVER['REQUEST_URI'], "/{$search_base}/") === false) {
-
 			wp_redirect(home_url("/{$search_base}/" . urlencode(get_query_var('s'))));
 			exit();
-
 		}
 
 	}
 
 	// --------------------------------------------------
 
-	public function remove_image_sizes($sizes) {
-
-		unset($sizes['thumbnail']);
-		unset($sizes['medium']);
-		unset($sizes['large']);
-
-		return $sizes;
-
-	}
+	// public function remove_image_sizes($sizes) {
+	// 	unset($sizes['thumbnail']);
+	// 	unset($sizes['medium']);
+	// 	unset($sizes['large']);
+	// 	return $sizes;
+	// }
 
 	// --------------------------------------------------
 
 	public function remove_thumbnail_dimensions($html) {
-
 		$html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
-
 		return $html;
-
 	}
 
 	// --------------------------------------------------
 
 	public function tags_support_all() {
-
 		register_taxonomy_for_object_type('post_tag', 'page');
-
 	}
 
 	public function tags_support_query($wp_query) {
-
 		if($wp_query->get('tag')) {
 			$wp_query->set('post_type', 'any');
 		}
-
 	}
 
 	// --------------------------------------------------
 
 	public function images_on_demand() {
-
 		add_filter('sanitize_file_name', array($this, 'sanitize_new_filename'), 10, 2);
-
 		add_action('template_redirect', array($this, 'dynimg_404_handler'));
 
 		// prevent WP from generating resized images on upload
@@ -260,16 +240,14 @@ Class ThemeSetup {
 	}
 
 	public function sanitize_new_filename($filename, $filename_raw) {
-
-		$new = str_ireplace(array('ä', 'ü', 'ö', 'ß'), array('ae', 'ue', 'oe', 'ss'), $filename);
-
-		return $new;
-
+		return str_ireplace(array('ä', 'ü', 'ö', 'ß'), array('ae', 'ue', 'oe', 'ss'), $filename);
 	}
 
 	public function dynimg_404_handler() {
 
-		if ( !is_404() ) return;
+		if ( !is_404() ){
+			return;
+		}
 
 		if (preg_match('/(.*)-([0-9]+)x([0-9]+)(c)?\.(jpg|png|gif)/i',$_SERVER['REQUEST_URI'],$matches)) {
 			$filename = $matches[1].'.'.$matches[5];
@@ -350,9 +328,9 @@ Class ThemeSetup {
 
 	// --------------------------------------------------
 
-	public function rewrite_rules() {
+	public function add_rewrite_rules() {
 
-		foreach($this->settings->get_option('rewrite_rules') as $rule) {
+		foreach($this->settings->get('rewrite_rules') as $rule) {
 
 			add_rewrite_rule($rule[0], $rule[1], $rule[2]);
 
@@ -363,6 +341,47 @@ Class ThemeSetup {
 
 	// --------------------------------------------------
 
-}
 
-$theme_setup = new ThemeSetup($settings);
+
+  /**
+   * [initialize description]
+   * @param  [type] $_settings [description]
+   * @return [type]            [description]
+   */
+  public function initArtdirectedImages() {
+
+      foreach($this->settings->get('artdirectedImages') as $name => $options) {
+
+          foreach($options as $size => $option) {
+
+              $stage = $name. '_'.$size;
+
+              $add = Images::prepare_size($option[0], $option[1], $option[2], $stage, 'artdirected', $option[3]); // $width, $x, $y, $name, $group, $query
+
+              Images::add_size($add);
+          }
+      }
+  }
+
+  public function initSingleImages(){
+
+  	  foreach($this->settings->get('singleImages') as $name => $options) {
+
+          foreach($options as $size => $option) {
+
+              $stage = $name.'_'.$size;
+
+              $add = Images::prepare_size($option[0], $option[1], $option[2], $stage, 'image', $option[3]); // $width, $x, $y, $name, $group, $query
+
+              $size == 'preview' ? $retina = false : $retina = true;
+              Images::add_size($add, $retina);
+
+          }
+
+      }
+  }
+
+
+
+
+}

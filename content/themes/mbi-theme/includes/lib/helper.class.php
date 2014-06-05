@@ -17,38 +17,10 @@ Class Helper {
 	 * [__construct description]
 	 * @param Settings $_settings [description]
 	 */
-	public function __construct(Settings $_settings) {
+	public function __construct() {
 
-		$this->settings = $_settings;
-
-	}
-
-	/**
-	 * [banner description]
-	 * @param  boolean $force [description]
-	 * @return [type]         [description]
-	 */
-	public function banner($force = false) {
-
-		if($this->settings->get_option('banner') === true || $force === true) {
-
-			ob_start();
-
-		?>
-	<!--
-	/*
-	 * This website was carefully designed and built by
-	 *
-	 * Moodley Brand Identity
-	 * http://www.moodley.at/
-	 *
-	 */
-	-->
-		<?php
-
-			echo ob_get_clean();
-
-		}
+		//$this->settings = $_settings;
+		$settings = Settings::getInstance();
 
 	}
 
@@ -58,11 +30,13 @@ Class Helper {
 	 * @param  boolean $die [description]
 	 * @return [type]       [description]
 	 */
-	public function print_debug($var, $die = false) {
+	public static function print_debug($var, $die = false) {
 
 		if(WP_DEBUG === true) {
 
-			if($this->settings->get_option('debug') === true) {
+			$settings = Settings::getInstance();
+
+			if($settings->get('debug') === true) {
 
 				if(empty($var)) {
 					$var = 'mbi_print_debug: var empty';
@@ -202,13 +176,14 @@ Class Helper {
 
 // ------------------------------------------------
 
-$helper = new Helper($settings);
+// $helper = new Helper($settings);
+
 
 // ------------------------------------------------
 
 function pd($var, $die = false) {
 
-	global $helper;
-	$helper->print_debug($var);
+	// global $helper;
+	Helper::print_debug($var);
 
 }

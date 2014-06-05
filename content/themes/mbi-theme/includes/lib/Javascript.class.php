@@ -3,17 +3,26 @@
 /**
  * Javascript
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
 Class Javascript {
 
-	public function __construct(Settings $_settings) {
+	private static $instance;
 
-		$this->settings = $_settings;
+  public static function getInstance() {
+      if(!self::$instance) {
+          self::$instance = new self();
+      }
+  return self::$instance;
+  }
 
-	}
+	protected function __construct() {}
+	private function __clone() {}
+	private function __wakeup() {}
 
-	public function footer() {
+	// ----------------------------------------
+
+	public static function printJS() {
 
 		ob_start();
 
@@ -30,7 +39,7 @@ Class Javascript {
 <?php
 
 
-$require = $this->settings->get_option('requirejs');
+$require = Settings::get('requirejs');
 
 foreach ($require as $name => $path) {
 
@@ -45,7 +54,9 @@ foreach ($require as $name => $path) {
 		mbiMq.init({
 <?php
 
-$queries = $this->settings->get_option('breakpoints');
+$queries = Settings::get('breakpoints');
+
+
 
 foreach ($queries as $key => $query) {
 
@@ -69,5 +80,3 @@ foreach ($queries as $key => $query) {
 	}
 
 }
-
-$javascript = new Javascript($settings);

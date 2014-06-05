@@ -14,22 +14,11 @@ define(function () {
     }
 
 
-
-
     MbiEvents.prototype = {
-
-        /**
-         * Whenever you replace an Object's Prototype, you need to repoint
-         * the base Constructor back at the original constructor Function,
-         * otherwise `instanceof` calls will fail.
-         */
         constructor: MbiEvents,
         addListener: addListener,
         removeListener: removeListener
     };
-
-
-
 
 
     function addListener(element, eventName, handler) {

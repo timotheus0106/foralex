@@ -7,12 +7,26 @@
  */
 Class Settings {
 
+	private static $instance;
 	public $settings;
 
+  private function __construct() {
+  	$this->initDefaults();
+  }
+
+  // getInstance method
+  public static function getInstance() {
+    if(!self::$instance) {
+      self::$instance = new self();
+    }
+    return self::$instance;
+  }
+
+
 	/**
-	 * [__construct description]
+	 * Generates the default settings object
 	 */
-	public function __construct() {
+	private function initDefaults() {
 
 		$baseUrl = get_template_directory_uri().'/assets/build/js/';
 
@@ -21,11 +35,11 @@ Class Settings {
 		$this->settings = (object)array(
 
 			'debug' => false, // mbi debug (pd, etc.)
-
 			'comments' => false, // enable comments
 			'widgets' => false, // enable widget
 			'page_tags' => false, // enable tags for pages
 			'banner' => true, // mbi banner
+			'removeImageAttributes' => true,
 			'dynamic_images' => true, // dynamic image creation, should always be enabled to keep amount of images down
 
 			// which menus to register
@@ -35,7 +49,7 @@ Class Settings {
 				'footer_menu' => 'Footer Menu'
 
 			),
-			'beautifysearch' => true,
+			'beautifySearch' => true,
 
 			// to register as breakpoints within js
 			// for now no overlapping queries are possible
@@ -49,7 +63,7 @@ Class Settings {
 			),
 
 			// only for artdirected css
-			'artdirected' => array(
+			'artdirectedImages' => array(
 
 				'fullscreen' => array(
 
@@ -63,7 +77,7 @@ Class Settings {
 			),
 
 			// only for picture element breakpoints
-			'image' => array(
+			'singleImages' => array(
 
 				'grid' => array( // immer gefälligst standard + preview
 
@@ -85,7 +99,6 @@ Class Settings {
 
 				array('admin/?$', 'wp-admin', 'top'),
 		        array('login/?$', 'wp-login.php', 'top')
-
 			)
 
 		);
@@ -96,7 +109,7 @@ Class Settings {
 	 * [init description]
 	 * @param  [type] $_settings [description]
 	 */
-	public function init($_settings) {
+	public function apply($_settings) {
 
 		foreach($_settings as $key => $value) {
 
@@ -106,7 +119,7 @@ Class Settings {
 
 					$defaults = $this->get_option($key);
 					$combined = array_merge($defaults, $value);
-					$this->set_option($key, $combined);
+					$this->get($key, $combined);
 
 					break;
 				case 'requirejs':
@@ -116,7 +129,7 @@ Class Settings {
 					break;
 				default:
 
-					$this->set_option($key, $value);
+					$this->set($key, $value);
 
 					break;
 
@@ -124,22 +137,57 @@ Class Settings {
 
 		}
 
-		$this->set_option('requirejs', Init::get_require_paths());
+		// $this->set_option('requirejs', $this->get_require_paths());
+		$this->set('requirejs', $this->get_require_paths());
 
 	}
 
-	public function set_option($_key, $_value) {
+	/**
+	 * [get_require_paths description]
+	 * @return [type] [description]
+	 */
+	public static function get_require_paths() {
 
-		$this->settings->{$_key} = $_value;
+		$content = file_get_contents(get_template_directory() . '/assets/conf/build.js');
+
+		$json = substr($content, 15, -2);
+
+    	$data = json_decode($json, TRUE);
+
+    	$require = (array)$data['paths'];
+
+    	unset($require['jquery']); // äh... geht das nicht automatisiert bitte? ;)
+
+    	foreach($require as &$path) {
+
+    		$path = get_template_directory_uri(). '/assets/build/js/'.$path;
+
+    	}
+
+		return $require;
 
 	}
 
-	public function get_option($_key) {
+	// public function set_option($_key, $_value) {
+	// 	$this->settings->{$_key} = $_value;
+	// }
 
-		return $this->settings->{$_key};
+	// public function get_option($_key) {
+	// 	return $this->settings->{$_key};
+	// }
 
-	}
+	public static function get( $key ) {
+      if ( isset( self::$instance->$key ) ) {
+          return self::$instance->$key;
+      } else {
+          return null;
+      }
+    }
+
+	public static function set( $key, $value ) {
+        self::$instance->$key = $value;
+  }
 
 }
 
-$settings = new Settings();
+// $settings = new Settings();

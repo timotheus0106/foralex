@@ -33,16 +33,7 @@ define(function () {
       }
     }
 
-
-
-
     Elements.prototype = {
-
-        /**
-         * Whenever you replace an Object's Prototype, you need to repoint
-         * the base Constructor back at the original constructor Function,
-         * otherwise `instanceof` calls will fail.
-         */
         constructor: Elements,
         find: find,
         hasClass: hasClass,
