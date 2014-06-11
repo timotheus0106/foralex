@@ -1,0 +1,32 @@
+html, body{
+	box-sizing:border-box;
+}
+.page{
+	height:100%;
+}
+.startpage--site-wrapper{
+	width:100%;
+	height:100%;
+	background-color: #000001;
+	border: em(10px) solid #fff;
+	position: relative;
+}
+.logo{
+
+	width:em(178px);
+	height:em(35px);
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin-left: em(-89px);
+	margin-top: em(-17.5px);
+	background:url('assets/gfx/logo_big.png') center center no-repeat;
+}
+.startpage--button--wrapper{
+	position: absolute;
+	width:em(50px);
+	height:em(50px);
+	bottom:0;
+	right:0;
+	background-color: #fff;
+}

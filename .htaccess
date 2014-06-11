@@ -301,3 +301,6 @@ RewriteRule . /moodley/index.php [L]
 </IfModule>
 
 # END WordPress
+# BEGIN WordPress
+
+# END WordPress
