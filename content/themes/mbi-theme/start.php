@@ -14,18 +14,22 @@ get_header(); ?>
         
     ?>
 
-	<div class="startpage--site-wrapper box">
+	<div class="startpage__site-wrapper box">
 		
-		<div class="logo"></div>
-		<div class="startpage--button--wrapper">
+		<div class="infoWrapper">
+			
 
-			<!--<div class="button--black--down--wrapper">-->
+		</div>
+		<div class="logo"></div>
+		<!--<div class="startpage__button--wrapper">
+
+			<div class="button--black--down--wrapper">
 
 				<div class="buttons button--black--down"></div>
 
-			<!--</div>-->
+			</div>
 
-		</div>
+		</div>-->
 
 	</div>
 
