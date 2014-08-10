@@ -22,10 +22,10 @@ if(file_exists(dirname(__FILE__) . '/wp-local-config.php' )){ // load local conf
     define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/content');
 
     define('WP_LOCAL_DEV', false);
-    define('DB_NAME', 'database_name_here');
-    define('DB_USER', 'username_here');
-    define('DB_PASSWORD', 'password_here');
-    define('DB_HOST', 'localhost');
+    define('DB_NAME', 'd01b5ebe');
+    define('DB_USER', 'd01b5ebe');
+    define('DB_PASSWORD', 'JMGoCNCJ8qbeR6KH');
+    define('DB_HOST', 'alexanderprasser.at');
     define('WP_DEBUG', false);
 }
 define( 'DB_CHARSET', 'utf8' );
@@ -43,14 +43,14 @@ define('WP_DEFAULT_THEME', 'mbi-theme');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'put your unique phrase here');
-define('SECURE_AUTH_KEY',  'put your unique phrase here');
-define('LOGGED_IN_KEY',    'put your unique phrase here');
-define('NONCE_KEY',        'put your unique phrase here');
-define('AUTH_SALT',        'put your unique phrase here');
-define('SECURE_AUTH_SALT', 'put your unique phrase here');
-define('LOGGED_IN_SALT',   'put your unique phrase here');
-define('NONCE_SALT',       'put your unique phrase here');
+define('AUTH_KEY',         'AWJo!>hB6digP$#3:Xg9l[sMJ:dAOx1G y6Hdc4! [{f7uMAs9.+w@X[ujDcpmt;');
+define('SECURE_AUTH_KEY',  'x2kb&$i/CV17KUf8zy!BF~1<p+^4#5}S+4!t}<Su#dB~:@U+qtVj[yU?6nJre&eC');
+define('LOGGED_IN_KEY',    '=eqW^Le3Sv}uOsx80&OcjS)ADscFSf0x44M8]U8jT0~8TaO,t9jlI,d ?_CQX/Nd');
+define('NONCE_KEY',        '#?fMf*~kL0n@k$Nc?Up<c,@lgg6)pangp,-a]p>dP* uv`p|(5I/v3]QT>V_>Bzj');
+define('AUTH_SALT',        '|b|_LP) -p4z|^WX<:,XmgvS)sk[zW*+pSbM8Pknh|{_53A@UHvqjKm}YLx0X#K%');
+define('SECURE_AUTH_SALT', '$qv25UiCCx.x$C>:I}5(tnBW)w+{6C$5)ouKy9;~K+|uaU>xin[ z8MNYgB.ntWF');
+define('LOGGED_IN_SALT',   'Z32JU^?MQM_g_#tC*&Vgr-s+@xO!#SxVFD,X3kK,!2+Qi!>1j~&cVuC3E!0x}*${');
+define('NONCE_SALT',       'aXcrP1p.$lHOJpBFHtHreV+ O1krIQD!GO  XbB 1D{Ob)0FF<hU9g=>-9r!;QC;');
 
 // define('WPMU_PLUGIN_DIR', $_SERVER['DOCUMENT_ROOT'] . '/' . basename(__DIR__) .  '/content/mu-plugins');
 // define('WPMU_PLUGIN_URL', $_SERVER['DOCUMENT_ROOT'] . '/' . basename(__DIR__) .  '/content/mu-plugins');

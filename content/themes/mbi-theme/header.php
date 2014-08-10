@@ -25,40 +25,16 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width" />
 
-	<title>
-		<?php global $page, $paged;
-    wp_title( '|', true, 'right' );
-    bloginfo( 'name' );
-    $site_description = get_bloginfo( 'description', 'display' );
-    if ( $site_description && ( is_home() || is_front_page() ) ){
-    	echo " | $site_description";
-    }
-    if ( $paged >= 2 || $page >= 2 ){
-    	echo ' | ' . sprintf( __( 'Page %s', 'moodley' ), max( $paged, $page ) );
-    } ?>
-  </title>
-
+	<title>Alexander Prasser - Style Director</title>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="<?php echo(get_template_directory_uri()); ?>/style.css">
 
 	<?php wp_head(); ?>
 
 	<?php
-		/**
-		 * Background image styles output
-		 */
-		//$backgroundImage->printArtDirectedImageCSS(); 
+		
 	?>
 
 </head>
 <body>
-
-	<!--
-	/*
-	 * This website was carefully designed and built by
-	 *
-	 * Moodley Brand Identity
-	 * http://www.moodley.at/
-	 *
-	 */
-	-->
 	<div class="page">

@@ -22,8 +22,8 @@
 // ----------------------------------------------------------------------------------
 // Theme Setup/Settings (base)
 // ----------------------------------------------------------------------------------
-require_once('includes/lib/Settings.class.php');
-require_once('includes/lib/ThemeSetup.class.php');
+// require_once('includes/lib/Settings.class.php');
+// require_once('includes/lib/ThemeSetup.class.php');
 
 
 
@@ -31,14 +31,13 @@ require_once('includes/lib/ThemeSetup.class.php');
 // Theme Setup/Settings (optional)
 // TODO: autoloader for the win!
 // ----------------------------------------------------------------------------------
-require_once('includes/lib/Images.class.php');
+//require_once('includes/lib/Images.class.php');
 require_once('includes/lib/Javascript.class.php');
-require_once('includes/lib/Picture.class.php');
-require_once('includes/lib/BackgroundImage.class.php');
-require_once('includes/Shortcodes.class.php');
-require_once('includes/lib/Helper.class.php');
-require_once('includes/lib/Data.class.php');
-require_once('includes/lib/Loader.class.php');
+// require_once('includes/lib/Picture.class.php');
+// require_once('includes/lib/BackgroundImage.class.php');
+//require_once('includes/lib/Helper.class.php');
+//require_once('includes/lib/Data.class.php');
+// require_once('includes/lib/Loader.class.php');
 
 
 
@@ -46,7 +45,7 @@ require_once('includes/lib/Loader.class.php');
 // Theme Setup/Settings (custom)
 // - load project specific classes here
 // ----------------------------------------------------------------------------------
-require_once('includes/MbiWalker.class.php');
+
 
 
 // ----------------------------------------------------------------------------------

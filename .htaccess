@@ -291,28 +291,36 @@ FileETag None
 # | WordPress                                                                  |
 # ------------------------------------------------------------------------------
 
+#<IfModule mod_rewrite.c>
+#RewriteEngine On
+#RewriteBase /moodley/
+#RewriteRule ^index\.php$ - [L]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule . /moodley/index.php [L]
+#</IfModule>
+
+# END WordPress
+# BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /moodley/
+RewriteBase /alexprasser/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /moodley/index.php [L]
+RewriteRule . /alexprasser/index.php [L]
 </IfModule>
 
 # END WordPress
 # BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /alexprasser/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /alexprasser/index.php [L]
+</IfModule>
 
 # END WordPress
-# BEGIN WordPress
 
-# END WordPress
-# BEGIN WordPress
-
-# END WordPress
-# BEGIN WordPress
-
-# END WordPress
-# BEGIN WordPress
-
-# END WordPress

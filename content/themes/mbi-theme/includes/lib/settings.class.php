@@ -38,7 +38,7 @@ Class Settings {
 			'comments' => false, // enable comments
 			'widgets' => false, // enable widget
 			'page_tags' => false, // enable tags for pages
-			'banner' => true, // mbi banner
+			'banner' => false, // mbi banner
 			'removeImageAttributes' => true,
 			'dynamic_images' => true, // dynamic image creation, should always be enabled to keep amount of images down
 
