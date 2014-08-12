@@ -49,7 +49,9 @@ html, body{
      -o-transition:top 0.8s ease-in-out;
         transition:top 0.8s ease-in-out;
 	}
-	.contactData{
+	.contactData,
+	.openTimes,
+	.furtherInformation{
 		width:em(300px);
 		font-family: $base-font-family;
 		color: $white;
@@ -65,25 +67,12 @@ html, body{
      -o-transition:top 0.8s ease-in-out;
         transition:top 0.8s ease-in-out;
 
-		.contactData-inner{
-		}
+	}
+	.contactData{
+
 	}
 	.openTimes{
-
-		width:em(300px);
-		font-family: $base-font-family;
-		color: $white;
 		font-size: em(12px);
-		text-transform:uppercase;
-		text-align:right;
-		position: absolute;
-		top:-100%;
-		right:0;
-
-		-webkit-transition:top 0.8s ease-in-out;
-   -moz-transition:top 0.8s ease-in-out;
-     -o-transition:top 0.8s ease-in-out;
-        transition:top 0.8s ease-in-out;
 
 		.openTimes__heading{
 			font-size: em(20px);
@@ -97,6 +86,7 @@ html, body{
 //-------------------------------------------------------------
 // further information
 
+/*
 .furtherInformation{
 	width:45%;
 	text-align:right;
@@ -108,7 +98,7 @@ html, body{
 	color: $white;
 	font-size: em(9px);
 
-}
+} */
 
 //-------------------------------------------------------------
 // bottom buttons
@@ -125,21 +115,26 @@ html, body{
 	font-size:em(12px);
 
 	.bottom__contact,
-	.bottom__openTimes{
+	.bottom__openTimes,
+	.bottom__discount{
 		float:left;
 		text-align:center;
-		width:50%;
+		width:33.3%;
 		box-sizing:border-box;
 		cursor:pointer;
 	}
 
 	.bottom__contact{
 		text-align:right;
-		padding-right: em(20px);
+		//padding-right: em(20px);
 	}
 	.bottom__openTimes{
+		text-align:center;
+		//padding-left: em(20px);
+	}
+	.bottom__discount{
 		text-align:left;
-		padding-left: em(20px);
+		//padding-left: em(20px);
 	}
 }
 
@@ -227,4 +222,26 @@ a, .link{
   height: 30%;
   margin-top: -15%;
   width: 100%;
+}
+
+//mqs
+
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
+
+	.infoWrapper{
+		left:0;
+		margin-left: 0;
+		//right:em(20px);
+		//margin-right:3.25em;
+		width:95%;
+	}
+
+	.linksBottom{
+		.bottom__contact,
+		.bottom__openTimes,
+		.bottom__discount{
+			text-align:center;
+		}
+	}
+
 }

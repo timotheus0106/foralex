@@ -49,17 +49,16 @@ $mail = get_field('field_53e75fddc37a1', 4);
 					SA: 09 BIS 15 UHR
 				</p>
 			</div>
-
-		</div>
-		<div class="furtherInformation">
-			<p>20% Studentenrabatt von Dienstag bis Donnerstag bis 26 Jahre.<br/>
-				Kinder unter 12 Jahren bekommen in der Zeit von Montag bis Freitag jeweils bis 15 Uhr 50% Rabat
-			</p>
-
+			<div class="furtherInformation">
+				<p>20% Studentenrabatt von Dienstag bis Donnerstag bis 26 Jahre.
+					Kinder unter 12 Jahren bekommen in der Zeit von Montag bis Freitag jeweils bis 15 Uhr 50% Rabat
+				</p>
+			</div>
 		</div>
 		<div class="linksBottom">
 			<div class="bottom__contact link js_contactLink">kontakt</div>
 			<div class="bottom__openTimes link js_openTimes">öffnungszeiten</div>
+			<div class="bottom__discount link js_discount">rabatte</div>
 		</div>
 
 <!-- button down -->

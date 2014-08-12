@@ -16,14 +16,16 @@
 // e.g.:
 // define('WP_PAGE_ID_OUR_WORK', 7);
 // define('WP_PAGE_ID_PEOPLE', 9);
-
-
+define('PART_DIR', 	get_template_directory().'/partials/'); // partial directory
+define('INC_DIR', 	get_template_directory().'/includes/'); // includes directory
+define('LIB_DIR', 	INC_DIR.'/lib/'); // lib directory
+define('EXT_DIR', 	INC_DIR.'/external/'); // external lib directory
 
 // ----------------------------------------------------------------------------------
 // Theme Setup/Settings (base)
 // ----------------------------------------------------------------------------------
-// require_once('includes/lib/Settings.class.php');
-// require_once('includes/lib/ThemeSetup.class.php');
+require_once('includes/mbi/ThemeSettings.class.php');
+require_once('includes/mbi/ThemeSetup.class.php');
 
 
 
@@ -31,28 +33,28 @@
 // Theme Setup/Settings (optional)
 // TODO: autoloader for the win!
 // ----------------------------------------------------------------------------------
-//require_once('includes/lib/Images.class.php');
-require_once('includes/lib/Javascript.class.php');
-// require_once('includes/lib/Picture.class.php');
-// require_once('includes/lib/BackgroundImage.class.php');
-//require_once('includes/lib/Helper.class.php');
-//require_once('includes/lib/Data.class.php');
-// require_once('includes/lib/Loader.class.php');
-
-
+require_once('includes/mbi/Images.class.php');
+require_once('includes/mbi/Javascript.class.php');
+require_once('includes/mbi/Picture.class.php');
+require_once('includes/mbi/BackgroundImage.class.php');
+require_once('includes/mbi/Helper.class.php');
+require_once('includes/mbi/Data.class.php');
+require_once('includes/mbi/Loader.class.php');
+require_once('includes/mbi/WPMLHelper.class.php');
 
 // ----------------------------------------------------------------------------------
 // Theme Setup/Settings (custom)
 // - load project specific classes here
 // ----------------------------------------------------------------------------------
-
+require_once('includes/Shortcodes.class.php');
+require_once('includes/MbiWalker.class.php');
 
 
 // ----------------------------------------------------------------------------------
 // Theme-Settings
 // ----------------------------------------------------------------------------------
-$settings = Settings::getInstance();
-$settings->apply(array( // see settings for defaults
+ThemeSettings::getInstance();
+ThemeSettings::apply(array( // see settings for defaults
   'debug' => true,
   'menus' => array(
       'primary_nav' => 'Primary Menu',
@@ -70,15 +72,12 @@ $settings->apply(array( // see settings for defaults
     'cinema' => 'only screen and (min-width: 1912px)'
   ),
   'artdirectedImages' => array(
-
-    // 'fullscreen' => array(
-
-    //  'landscape' => array(1440, 16, 9, null), // standard ohne eigene media query für fallback
-    //  'portrait' => array(930, 3, 4, 'only screen and (min-width: 768px) and (orientation: portrait)'),
-    //  'landscape_closeup' => array(640, 5, 3, 'only screen and (max-width: 768px) and (orientation: landscape)'), // only with _suffix
-    //  'portrait_closeup' => array(384, 3, 5, 'only screen and (max-width: 768px) and (orientation: portrait)')
-
-    // )
+    'fullscreen' => array(
+     'landscape' => array(1440, 16, 9, null), // standard ohne eigene media query für fallback
+     'portrait' => array(930, 3, 4, 'only screen and (min-width: 768px) and (orientation: portrait)'),
+     'landscape_closeup' => array(640, 5, 3, 'only screen and (max-width: 768px) and (orientation: landscape)'), // only with _suffix
+     'portrait_closeup' => array(384, 3, 5, 'only screen and (max-width: 768px) and (orientation: portrait)')
+    )
   ),
   'singleImages' => array(
     'grid' => array( // preview, standard are required
@@ -91,7 +90,7 @@ $settings->apply(array( // see settings for defaults
   )
 ));
 
-$theme_setup = new ThemeSetup($settings);
+ThemeSetup::getInstance();
 
 
 // ----------------------------------------------------------------------------------
