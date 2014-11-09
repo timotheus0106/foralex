@@ -3,18 +3,21 @@
 /**
  * Javascript
  *
- * @version 0.2.0
+ * @version 1.0.0
  */
 Class Javascript {
 
-	private static $instance;
+	public static function getInstance() {
 
-  public static function getInstance() {
-      if(!self::$instance) {
-          self::$instance = new self();
-      }
-  return self::$instance;
-  }
+		static $instance = null;
+
+		if(null === $instance) {
+			$instance = new static();
+		}
+
+		return $instance;
+
+	}
 
 	protected function __construct() {}
 	private function __clone() {}
@@ -22,7 +25,7 @@ Class Javascript {
 
 	// ----------------------------------------
 
-	public static function printJS() {
+	public static function header() {
 
 		ob_start();
 
@@ -30,48 +33,26 @@ Class Javascript {
 ?>
 <script>
 
-	// @todo: put this into class function
+var mbiMediaQueries = <?php echo file_get_contents(ASSETS_DIR.'/conf/mq.json'); ?>; // this is so very good
 
-	require(['modules/mbimq', 'modules/mbiconfig'], function(mbiMq, mbiConfig) {
-
-		require.config({
-			paths: {
+require.config({
+	paths: {
 <?php
 
 
-$require = ThemeSettings::get('requirejs');
+$require = Settings::get_option('requirejs');
 
 foreach ($require as $name => $path) {
 
-	echo("\t\t\t\t".$name.': \''.$path.'\','.PHP_EOL);
+	echo("\t".$name.': \''.$path.'\','.PHP_EOL);
 
 }
 
 ?>
-			}
-		});
+	}
+});
 
-		mbiMq.init({
-<?php
-
-$queries = ThemeSettings::get('breakpoints');
-
-
-
-foreach ($queries as $key => $query) {
-
-	echo("\t\t\t".$key.': \''.$query.'\','.PHP_EOL);
-
-}
-
-?>
-		});
-
-		mbiConfig.path.gfx = '<?php echo(get_template_directory_uri()); ?>/assets/gfx/';
-
-	});
-
-	</script>
+</script>
 <?php
 	// ----------------------------------------------
 
@@ -80,3 +61,5 @@ foreach ($queries as $key => $query) {
 	}
 
 }
+
+Javascript::getInstance();

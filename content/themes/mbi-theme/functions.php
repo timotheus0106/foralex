@@ -42,6 +42,30 @@ require_once('includes/mbi/Data.class.php');
 require_once('includes/mbi/Loader.class.php');
 require_once('includes/mbi/WPMLHelper.class.php');
 
+
+// ----------------------------------------------------------------------------------
+
+require_once('includes/mbi/Settings.class.php');
+require_once('includes/mbi/Setup.class.php');
+
+// require_once('includes/mbi/Images.class.php');
+// require_once('includes/mbi/ImageCreator.class.php');
+
+require_once('includes/mbi/Helper.class.php');
+require_once('includes/mbi/WPMLHelper.class.php');
+require_once('includes/mbi/Data.class.php');
+require_once('includes/mbi/Loader.class.php');
+require_once('includes/mbi/Part.class.php');
+
+require_once('includes/mbi/Javascript.class.php');
+
+// require_once('includes/mbi/Picture.class.php');
+// require_once('includes/mbi/BackgroundImage.class.php');
+
+require_once('includes/mbi/SVG.class.php');
+
+
+
 // ----------------------------------------------------------------------------------
 // Theme Setup/Settings (custom)
 // - load project specific classes here

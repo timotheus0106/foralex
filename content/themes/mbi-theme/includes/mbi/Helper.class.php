@@ -3,7 +3,7 @@
 /**
  * Helper
  *
- * @version 0.2.1
+ * @version 0.2.2
  */
 Class Helper {
 
@@ -26,54 +26,108 @@ Class Helper {
 	// ----------------------------------------
 
 	/**
+	 * [banner description]
+	 * @param  boolean $force [description]
+	 * @return [type]         [description]
+	 */
+	public static function banner($force = false) {
+
+		if(Settings::get_option('banner') === true || $force === true) {
+
+			ob_start();
+
+		?>
+	<!--
+	/*
+	 * This website was carefully designed and built by
+	 *
+	 * Moodley Brand Identity
+	 * http://www.moodley.at/
+	 *
+	 */
+	-->
+		<?php
+
+			echo ob_get_clean();
+
+		}
+
+	}
+
+	/**
+	 * [print_console description]
+	 * @param  [type] $var   [description]
+	 * @param  [type] $title [description]
+	 * @return [type]        [description]
+	 */
+	public static function print_console($var, $title) {
+
+		echo('<script>console.log('.json_encode($var, JSON_HEX_QUOT).', \''.$title.'\');</script>');
+
+	}
+
+	/**
 	 * [print_debug description]
 	 * @param  [type]  $var [description]
 	 * @param  boolean $die [description]
 	 * @return [type]       [description]
 	 */
-	public static function print_debug($var, $die = false) {
+	public static function print_debug($var, $title = '$') {
 
-		// if(WP_DEBUG === true) {
+		if(Settings::get_option('debug') === true) {
 
-			if(Settings::get_option('debug') === true) {
-
-				if(empty($var)) {
-					$parse = 'mbi_print_debug: var empty';
-				} else {
-					$parse = print_r($var, true);
-				}
-
-				$parse = str_replace('Array', '<span style="color: #4692b9;">Array</span>', $parse);
-				$parse = str_replace('WP_Post Object', '<span style="color: #d6ea31;">WP_Post Object</span>', $parse);
-				$parse = str_replace('stdClass', '<span style="color: #fc7c49;">stdClass</span>', $parse);
-				$parse = str_replace('[]', '<span style="color: #d6ea31">{empty}</span>', $parse);
-				$parse = str_replace('[', '<span style="color: #fd523f">', $parse);
-				$parse = str_replace(']', '</span>', $parse);
-				$parse = str_replace('(', '<span style="color: #444;">(</span>', $parse);
-				$parse = str_replace(')', '<span style="color: #444;">)</span>', $parse);
-				$parse = str_replace(' => ', ' <span style="color: #666;">:</span> ', $parse);
-
-				$echo = '<pre style="font-family: Source Code Pro, Consolas, Courier New, monospaced; font-size: 12px; background: #333; color: #eee;">';
-				$echo .= $parse;
-				$echo .= '</pre>';
-
-				echo($echo);
-
-				if($die===true) {
-					exit();
-				}
-
-				return true;
-
+			if(empty($var)) {
+				$parse = '<span style="color: #666;">false/null/empty</span>';
+			} else {
+				$parse = print_r($var, true);
 			}
 
-		// } else {
+			$parse = str_replace('Array', '<span style="color: #4692b9;">Array</span>', $parse);
+			$parse = str_replace('Object', '<span style="color: #4692b9;">Object</span>', $parse);
 
-		// 	return false;
+			$parse = str_replace('[]', '<span style="color: #666;">empty Array</span>', $parse);
+			$parse = str_replace('[', '<span style="color: #fd523f;">', $parse);
+			$parse = str_replace(']', '</span>', $parse);
+			$parse = str_replace('(', '<span style="color: #444;">(</span>', $parse);
+			$parse = str_replace(')', '<span style="color: #444;">)</span>', $parse);
+			$parse = str_replace(" => \n", ' => <span style="color: #666;">false/null/empty</span>'."\n", $parse);
+			$parse = str_replace(' => ', ' <span style="color: #666;">:</span> ', $parse);
 
-		// }
+			$title = '<span style="color: #d6ea31;">'.$title.'</span> <span style="color: #666;">:</span> ';
+
+			$echo = '<pre style="font-family: Source Code Pro, Consolas, Courier New, monospaced; font-size: 12px; background: #333; color: #eee; border-bottom: 1px dashed #666; padding: 24px;">'.$title;
+			$echo .= $parse;
+			$echo .= '</pre>';
+
+			echo($echo);
+
+			return true;
+
+		}
 
 	}
+
+	public static function print_readable($var, $title = '$') {
+
+		if(Settings::get_option('debug') === true) {
+
+			if(empty($var)) {
+				$parse = 'false/null/empty';
+			} else {
+				$parse = print_r($var, true);
+			}
+
+			$echo = '<pre>'.$title;
+			$echo .= $parse;
+			$echo .= '</pre>';
+
+			echo($echo);
+
+		}
+
+		return true;
+	}
+
 
 	/**
 	 * Converting given phone number into
@@ -82,17 +136,17 @@ Class Helper {
 	 * @param bool $full anchor or number only
 	 * @return string either anchor with machine-readable phone number or with tel: within anchor
 	 **/
-	public function tel_to_anchor($tel, $full = false) {
+	public static function tel_to_anchor($tel, $full = false) {
 
-	    $newTel = $tel;
-	    $newTel = str_replace("+", "00", $newTel);
-	    $newTel = str_replace(array("(", ")", " ", "-", "/"), "", $newTel);
+		$newTel = $tel;
+		$newTel = str_replace("+", "00", $newTel);
+		$newTel = str_replace(array("(", ")", " ", "-", "/"), "", $newTel);
 
-	    if($full) {
-	        return '<a href="tel:'.$newTel.'">'.$tel.'</a>';
-	    } else {
-	        return $newTel;
-	    }
+		if($full) {
+			return '<a href="tel:'.$newTel.'">'.$tel.'</a>';
+		} else {
+			return $newTel;
+		}
 
 	}
 
@@ -108,7 +162,7 @@ Class Helper {
 			return $post->post_name;
 		// }
 		// else {
-		// 	return "";
+		//  return "";
 		// }
 
 	}
@@ -143,13 +197,15 @@ Class Helper {
 	 */
 	public function word_limiter($str, $limit = 16, $end_char = '&#8230;') {
 
-		if (trim($str) == ''){
+		if (trim($str) == '')
+		{
 			return $str;
 		}
 
 		preg_match('/^\s*+(?:\S++\s*+){1,'.(int) $limit.'}/', $str, $matches);
 
-		if (strlen($str) == strlen($matches[0])){
+		if (strlen($str) == strlen($matches[0]))
+		{
 			$end_char = '';
 		}
 
@@ -190,36 +246,107 @@ Class Helper {
 		}
 
 	}
-	
+
+	public static function country($short, $lang = 'en') {
+
+		if(file_exists(LIB_DIR.'/localization/countries.'.$lang.'.php')) {
+			include(LIB_DIR.'/localization/countries.'.$lang.'.php');
+		}
+
+		return $countries[$short];
+
+	}
+
+	public static function split_into_abc($array) {
+
+		$groups = array(
+			'ABC' => array('a', 'b', 'c'),
+			'DEF' => array('d', 'e', 'f'),
+			'GHI' => array('g', 'h', 'i'),
+			'JKL' => array('j', 'k', 'l'),
+			'MNO' => array('m', 'n', 'o'),
+			'PQR' => array('p', 'q', 'r'),
+			'STU' => array('s', 't', 'u'),
+			'VWX' => array('v', 'w', 'x'),
+			'YZ' => array('y', 'z')
+		);
+
+		$return = array();
+
+		$i = 0;
+
+		foreach($groups as $name => $values) {
+
+			$merge = array();
+
+			foreach($values as $key => $value) {
+
+				if(isset($array['items'][$value])) {
+
+					$merge = array_merge($merge, $array['items'][$value]);
+
+				}
+
+			}
+
+			$return['items'][$name] = $merge;
+
+			if(in_array($array['active'], $values)) {
+				$return['active'] = $name;
+			}
+
+			$i++;
+
+		}
+
+		$return['count'] = $array['count'];
+
+		return $return;
+
+	}
+
 }
 
 // ------------------------------------------------
 
-function pd($var, $die = false) {
+function pd($var, $title = '') {
 
-	Helper::print_debug($var);
+	Helper::print_debug($var, $title);
 
 }
+
+function pc($var, $title = 'print_console') {
+
+	Helper::print_console($var, $title);
+
+}
+
+function pr($var, $title = '') {
+
+	Helper::print_readable($var, $title);
+
+}
+
 
 // ------------------------------------------------
 
 function part($path) {
 
-    return PART_DIR.$path;
+	return PART_DIR.$path;
 
 }
 function inc($path) {
 
-    return INC_DIR.$path;
+	return INC_DIR.$path;
 
 }
 function lib($path) {
 
-    return LIB_DIR.$path;
+	return LIB_DIR.$path;
 
 }
 function ext($path) {
 
-    return EXT_DIR.$path;
+	return EXT_DIR.$path;
 
 }

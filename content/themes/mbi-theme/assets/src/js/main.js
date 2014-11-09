@@ -1,5 +1,5 @@
 
-require(['vendor/domready', 'jquery'], function(domReady, $) {
+require(['vendor/domready', 'jquery', 'vendor/idangerous.swiper'], function(domReady, $) {
 	'use strict';
 
 
@@ -88,11 +88,37 @@ require(['vendor/domready', 'jquery'], function(domReady, $) {
 
 	}
 
+function initialSwiper(){
+
+    var mySwiper = $('.swiper-container').swiper({
+        mode:'horizontal',
+        calculateHeight: true,
+        keyboardControl: true,
+        loop: true
+    });
+
+
+    $('body').on('click', '.js_swiperButton', function(){
+
+        if ($(this).hasClass('button--back')) {
+            mySwiper.swipePrev();
+        } else {
+            mySwiper.swipeNext();
+        }
+
+    });
+
+
+}
+
+
+
 
 
 	domReady(function () {
 		
 		moveUp();
+		initialSwiper();
 
 	});
 });

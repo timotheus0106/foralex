@@ -3,7 +3,7 @@
 /**
  * Loader
  *
- * @version 0.2.0
+ * @version 0.2.2
  */
 Class Loader {
 
@@ -29,7 +29,7 @@ Class Loader {
 	 * [get_post_data description]
 	 * @param  [type] $id [description]
 	 */
-	public static function getPostData($id = null) {
+	public static function get_post_data($id = null) {
 
 		if(!empty($id)) {
 
@@ -61,7 +61,7 @@ Class Loader {
 	 * @param  [type] $name [description]
 	 * @return [type]       [description]
 	 */
-	public static function getPostType($name) {
+	public static function get_post_type($name) {
 
 		$args = array(
 			'post_type' => $name
@@ -76,6 +76,8 @@ Class Loader {
 				$array[] = static::get_post_data(get_the_ID());
 			}
 		}
+
+		wp_reset_postdata();
 
 		return $array;
 	}

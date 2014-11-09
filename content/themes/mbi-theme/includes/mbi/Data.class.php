@@ -3,7 +3,7 @@
 /**
  * Data
  *
- * @version 0.2.1
+ * @version 0.2.2
  */
 
 Class Data {
@@ -36,13 +36,41 @@ Class Data {
 
 	// -------------------------------------------------
 
-	public static function output($key) {
+	public static function output($key, $return = false) {
 
 		global $data;
 
 		if(isset($data[$key])) {
 
-			echo $data[$key];
+			if($return === true) {
+
+				return $data[$key];
+
+			} else {
+
+				echo $data[$key];
+
+			}
+
+		} else {
+
+			return false;
+
+		}
+
+	}
+
+	public static function attribute($key, $attr) {
+
+		global $data;
+
+
+		if(isset($data[$key][$attr])) {
+
+
+
+				// echo $data[$key];
+				echo ' data-' . $attr . '="' . $data[$key][$attr] . '"';
 
 		} else {
 
