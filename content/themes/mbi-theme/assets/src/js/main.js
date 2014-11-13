@@ -1,5 +1,5 @@
 
-require(['vendor/domready', 'jquery', 'vendor/idangerous.swiper'], function(domReady, $) {
+require(['vendor/domready', 'jquery', 'vendor/idangerous.swiper', 'vendor/ImageSize'], function(domReady, $) {
 	'use strict';
 
 
@@ -20,12 +20,12 @@ require(['vendor/domready', 'jquery', 'vendor/idangerous.swiper'], function(domR
 
 			} else if ($('.openTimes').hasClass('is_visible')){ //opentimes is open
 
-				$('.openTimes').removeClass('is_visible');				
+				$('.openTimes').removeClass('is_visible');
 				$('.furtherInformation').addClass('is_visible');
 
 			} else { //furtherInformation is open
 
-				$('.furtherInformation').removeClass('is_visible');				
+				$('.furtherInformation').removeClass('is_visible');
 				$('.logo').addClass('is_visible');
 
 			}
@@ -48,7 +48,7 @@ require(['vendor/domready', 'jquery', 'vendor/idangerous.swiper'], function(domR
 			}
 
 
-		});	
+		});
 
 		$('body').on('click', '.js_openTimes', function(){
 
@@ -116,7 +116,7 @@ function initialSwiper(){
 
 
 	domReady(function () {
-		
+
 		moveUp();
 		initialSwiper();
 

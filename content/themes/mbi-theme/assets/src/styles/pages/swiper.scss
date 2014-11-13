@@ -92,23 +92,44 @@ sizes, pagination, etc.
 ================================================================*/
 
 .swiper-container, .swiper-slide {
-	width: 100%;
+	// width: 80%;
 	// height: 200px;#
-	max-width: 1024px;
-	img { width:100%; }
+	// max-width: 1024px;
+	// height:60%;
+	width:100%;
+
+
+
+	img {
+		width:100%;
+		// margin-top:50%;
+		// margin-left:50%;
+		// transform: translate(50%,-50%);
+
+	}
 }
 
 .swiper__buttons{
-	// width:40px;
-	width:100vw;
+
+	// width:100vw;
+	// height: 86px;
+	// position: absolute;
+	// top: 50%;
+	// right: 50%;
+	// transform: translate( 50%, -125%);
+	// z-index: 1;
+	// pointer-events:none;
+	// max-width:1200px;
+
+	width:140%;
 	height: 86px;
 	position: absolute;
 	top: 50%;
 	right: 50%;
-	transform: translate( 50%, -125%);
+	transform: translate( 50%, -50%);
 	z-index: 1;
 	pointer-events:none;
-	max-width:1200px;
+	// max-width:1200px;
 }
 
 .button--back,
@@ -121,7 +142,7 @@ sizes, pagination, etc.
 
 
 .button--back{
-	left:0px;
+	left:20px;
 	.swipe__button--left{
 		.button--left--line{
 			stroke-width:1px;
@@ -130,11 +151,17 @@ sizes, pagination, etc.
 	}
 }
 .button--forward{
-	right:0px;
+	right:20px;
 	.swipe__button--right{
 		.button--right--line{
 			stroke-width:1px;
 			// stroke:#ffffff;
 		}
+	}
+}
+
+@media only screen and (max-width: 768px), only screen and (max-device-width: 768px) {
+	.swiper__buttons{
+		width:100%;
 	}
 }
