@@ -212,16 +212,16 @@ get_header(); ?>
     <!-- TEXT-BIO: END -->
 
     <!-- IMG-BIO: START -->
-    <div class="imgbio">
-        <div class="img-bio--inner">
-            <!-- <div class="image img01"><img src="content/themes/mbi-theme/assets/gfx/Img/slide_03_s.jpg" alt="bio img"></div>
-            <div class="image img02"><img src="content/themes/mbi-theme/assets/gfx/Img/slide_03_s.jpg" alt="bio img"></div>
-            <div class="image img03"><img src="content/themes/mbi-theme/assets/gfx/Img/slide_03_s.jpg" alt="bio img"></div> -->
-            <div class="image img01"><img src="http://placehold.it/170x230" alt="bio img"></div>
-            <div class="image img02"><img src="http://placehold.it/230x160" alt="bio img"></div>
-            <div class="image img03"><img src="http://placehold.it/370x260" alt="bio img"></div>
+        <div class="imgbio">
+            <div class="img-bio--inner">
+                <!-- <div class="image img01"><img src="content/themes/mbi-theme/assets/gfx/Img/slide_03_s.jpg" alt="bio img"></div>
+                <div class="image img02"><img src="content/themes/mbi-theme/assets/gfx/Img/slide_03_s.jpg" alt="bio img"></div>
+                <div class="image img03"><img src="content/themes/mbi-theme/assets/gfx/Img/slide_03_s.jpg" alt="bio img"></div> -->
+                <div class="image img01"><img src="http://placehold.it/170x230" alt="bio img"></div>
+                <div class="image img02"><img src="http://placehold.it/230x160" alt="bio img"></div>
+                <div class="image img03"><img src="http://placehold.it/370x260" alt="bio img"></div>
+            </div>
         </div>
-    </div>
     <!-- IMG-BIO: END -->
 
 
