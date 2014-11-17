@@ -41,10 +41,10 @@ get_header(); ?>
                     <div class="tel link">T&nbsp;&nbsp;&nbsp;<a href="tel:00436608300211"><?php echo $tel; ?></a></div>
                     <div class="mail link">M&nbsp;&nbsp;&nbsp;<a href="mailto:<?php echo $mail; ?>"><?php echo $mail; ?></a></div> -->
 
-                    <div class="name">name nachname</div>
-					<div class="street">straße</div>
-					<div class="tel link">T&nbsp;&nbsp;&nbsp;<a href="tel:00436608300211">00436608300211</a></div>
-					<div class="mail link">M&nbsp;&nbsp;&nbsp;<a href="mailto:alexprasser@alexprasser.at">alexprasser@alexprasser.at</a></div>
+                    <div class="name">ALEXANDER PRASSER</div>
+					<div class="street">ENGE GASSE 3, 8010 GRAZ</div>
+					<div class="tel link">T&nbsp;&nbsp;&nbsp;<a href="tel:00436608300211">0043 660 / 8300211</a></div>
+					<div class="mail link">M&nbsp;&nbsp;&nbsp;<a href="mailto:info@alexanderprasser.at">info@alexanderprasser.at</a></div>
 				</div>
 			</div>
 			<div class="openTimes">
@@ -67,7 +67,7 @@ get_header(); ?>
 		</div>
 
 <!-- button down -->
-		<div class="startpage__button--wrapper">
+		<div class="startpage__button--wrapper js_scrollDown">
 			<div class="button--black--down--wrapper">
 				<!--<div class="buttons button--black--down"></div>-->
 				<?php SVG::getFromFile('arrow_down', 'svg__arrow--down') ?>
@@ -117,30 +117,35 @@ get_header(); ?>
                 <div class="swiper-wrapper">
             <!--First Slide-->
                     <div class="swiper-slide">
-                        <img class="image img__slide1" src="content/themes/mbi-theme/assets/gfx/Img/slide_01_s.jpg" alt="slide img">
+                        <img class="image img__slide1" src="content/themes/mbi-theme/assets/gfx/Img/slide_01_s-s.jpg" alt="slide img">
                     </div>
 
             <!--Second Slide-->
                     <div class="swiper-slide">
-                        <img class="image img__slide2" src="content/themes/mbi-theme/assets/gfx/Img/slide_02_s.jpg" alt="slide img">
+                        <img class="image img__slide2" src="content/themes/mbi-theme/assets/gfx/Img/slide_02_s-s.jpg" alt="slide img">
                     </div>
 
             <!--Third Slide-->
                     <div class="swiper-slide">
-                        <img class="image img__slide3" src="content/themes/mbi-theme/assets/gfx/Img/slide_03_s.jpg" alt="slide img">
+                        <img class="image img__slide3" src="content/themes/mbi-theme/assets/gfx/Img/slide_03_s-s.jpg" alt="slide img">
                     </div>
             <!--Fourth Slide-->
                     <div class="swiper-slide">
-                        <img class="image img__slide4" src="content/themes/mbi-theme/assets/gfx/Img/slide_04_s.jpg" alt="slide img">
+                        <img class="image img__slide4" src="content/themes/mbi-theme/assets/gfx/Img/slide_04_s-s.jpg" alt="slide img">
                     </div>
             <!--Fifth Slide-->
                     <div class="swiper-slide">
-                        <img class="image img__slide5" src="content/themes/mbi-theme/assets/gfx/Img/slide_05_s.jpg" alt="slide img">
+                        <img class="image img__slide5" src="content/themes/mbi-theme/assets/gfx/Img/slide_05_s-s.jpg" alt="slide img">
                     </div>
             <!--Sixths Slide-->
                     <div class="swiper-slide">
-                        <img class="image img__slide6" src="content/themes/mbi-theme/assets/gfx/Img/slide_06_s.jpg" alt="slide img">
+                        <img class="image img__slide6" src="content/themes/mbi-theme/assets/gfx/Img/slide_06_s-s.jpg" alt="slide img">
                     </div>
+            <!--Seventh Slide-->
+                    <div class="swiper-slide">
+                        <img class="image img__slide7" src="content/themes/mbi-theme/assets/gfx/Img/slide_07_s-s.jpg" alt="slide img">
+                    </div>
+            <!--Etc..-->
             <!--Etc..-->
                 </div>
             </div>
@@ -158,6 +163,15 @@ get_header(); ?>
             <div class="bottom__discount link js_discount">rabatte</div>
         </div>
 	<!-- BUTTONS BOTTOM: END -->
+
+    <!-- button down -->
+        <div class="startpage__button--wrapper js_scrollDown">
+            <div class="button--black--down--wrapper">
+                <!--<div class="buttons button--black--down"></div>-->
+                <?php SVG::getFromFile('arrow_down', 'svg__arrow--down') ?>
+            </div>
+        </div>
+<!-- button down END -->
 
 
 	</div>
@@ -214,12 +228,13 @@ get_header(); ?>
     <!-- IMG-BIO: START -->
         <div class="imgbio">
             <div class="img-bio--inner">
-                <!-- <div class="image img01"><img src="content/themes/mbi-theme/assets/gfx/Img/slide_03_s.jpg" alt="bio img"></div>
-                <div class="image img02"><img src="content/themes/mbi-theme/assets/gfx/Img/slide_03_s.jpg" alt="bio img"></div>
-                <div class="image img03"><img src="content/themes/mbi-theme/assets/gfx/Img/slide_03_s.jpg" alt="bio img"></div> -->
-                <div class="image img01"><img src="http://placehold.it/170x230" alt="bio img"></div>
+                <div class="image img01"><img src="content/themes/mbi-theme/assets/gfx/Img/bio_01_s-s.jpg" alt="bio img"></div>
+                <div class="image img02"><img src="content/themes/mbi-theme/assets/gfx/Img/bio_02_s-s.jpg" alt="bio img"></div>
+                <div class="image img03"><img src="content/themes/mbi-theme/assets/gfx/Img/bio_03_s-s.jpg" alt="bio img"></div>
+
+                <!-- <div class="image img01"><img src="http://placehold.it/170x230" alt="bio img"></div>
                 <div class="image img02"><img src="http://placehold.it/230x160" alt="bio img"></div>
-                <div class="image img03"><img src="http://placehold.it/370x260" alt="bio img"></div>
+                <div class="image img03"><img src="http://placehold.it/370x260" alt="bio img"></div> -->
             </div>
         </div>
     <!-- IMG-BIO: END -->

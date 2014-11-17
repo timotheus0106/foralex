@@ -111,6 +111,27 @@ function initialSwiper(){
 
 }
 
+function scrollDown(){
+	$('.js_scrollDown').click(function(){
+
+		// $(this).parent.next
+
+		    $('html, body').animate({
+		        scrollTop: $(this).parent().next().offset().top
+		    }, 1000);
+
+	});
+}
+
+function scrollUp(){
+	$('.linksBottom').click(function(){
+
+		$('html, body').animate({
+	        scrollTop: $(this).parent().offset().top
+	    }, 500);
+
+	});
+}
 
 
 
@@ -119,6 +140,8 @@ function initialSwiper(){
 
 		moveUp();
 		initialSwiper();
+		scrollDown();
+		scrollUp();
 
 	});
 });
