@@ -90,10 +90,10 @@ get_header(); ?>
 					<div class="tel link">T&nbsp;&nbsp;&nbsp;<a href="tel:00436608300211"><?php echo $tel; ?></a></div>
 					<div class="mail link">M&nbsp;&nbsp;&nbsp;<a href="mailto:<?php echo $mail; ?>"><?php echo $mail; ?></a></div> -->
 
-                    <div class="name">name nachname</div>
-                    <div class="street">straße</div>
-                    <div class="tel link">T&nbsp;&nbsp;&nbsp;<a href="tel:00436608300211">00436608300211</a></div>
-                    <div class="mail link">M&nbsp;&nbsp;&nbsp;<a href="mailto:alexprasser@alexprasser.at">alexprasser@alexprasser.at</a></div>
+                    <div class="name">ALEXANDER PRASSER</div>
+                    <div class="street">ENGE GASSE 3, 8010 GRAZ</div>
+                    <div class="tel link">T&nbsp;&nbsp;&nbsp;<a href="tel:00436608300211">0043 660 / 8300211</a></div>
+                    <div class="mail link">M&nbsp;&nbsp;&nbsp;<a href="mailto:info@alexanderprasser.at">info@alexanderprasser.at</a></div>
 				</div>
 			</div>
 			<div class="openTimes">
@@ -191,10 +191,10 @@ get_header(); ?>
                     <div class="tel link">T&nbsp;&nbsp;&nbsp;<a href="tel:00436608300211"><?php echo $tel; ?></a></div>
                     <div class="mail link">M&nbsp;&nbsp;&nbsp;<a href="mailto:<?php echo $mail; ?>"><?php echo $mail; ?></a></div> -->
 
-                    <div class="name">name nachname</div>
-                    <div class="street">straße</div>
-                    <div class="tel link">T&nbsp;&nbsp;&nbsp;<a href="tel:00436608300211">00436608300211</a></div>
-                    <div class="mail link">M&nbsp;&nbsp;&nbsp;<a href="mailto:alexprasser@alexprasser.at">alexprasser@alexprasser.at</a></div>
+                    <div class="name">ALEXANDER PRASSER</div>
+                    <div class="street">ENGE GASSE 3, 8010 GRAZ</div>
+                    <div class="tel link">T&nbsp;&nbsp;&nbsp;<a href="tel:00436608300211">0043 660 / 8300211</a></div>
+                    <div class="mail link">M&nbsp;&nbsp;&nbsp;<a href="mailto:info@alexanderprasser.at">info@alexanderprasser.at</a></div>
                 </div>
             </div>
             <div class="openTimes">
