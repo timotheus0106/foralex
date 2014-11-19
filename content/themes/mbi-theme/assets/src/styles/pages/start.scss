@@ -12,6 +12,18 @@ html, body{
 	background-color: $black;
 	border: em(10px) solid $white;
 	position: relative;
+
+	// &:before{
+	// 	content:"";
+	// 	pointer-events:none;
+	// 	top:5px;
+	// 	right:5px;
+	// 	bottom:5px;
+	// 	left:5px;
+	// 	position: absolute;
+	// 	display:block;
+	// 	border:2px solid orange;
+	// }
 }
 .infoWrapper{
 	width: em(300px);
