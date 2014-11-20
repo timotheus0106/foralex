@@ -593,6 +593,16 @@ a, .link{
 
 	// }
 
+	.fadeOutImg{
+		width:100%;
+		.imageFadeOut{
+			left:0;
+			transform:translate(0 , -50%);
+			width:100%;
+
+		}
+	}
+
 }
 
 
@@ -628,5 +638,8 @@ a, .link{
 	.startpage__button--wrapper{
 		bottom:50px;
 	}
+
+
+
 
 }

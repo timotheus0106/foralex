@@ -32,7 +32,7 @@ get_header(); ?>
 	<div class="startpage__site-wrapper box">
 
         <div class="fadeOutImg">
-            <img class="image imageFadeOut" src="content/themes/mbi-theme/assets/gfx/Img/nc/slide_07_nc_f.png" alt="slide img">
+            <img class="image imageFadeOut" src="content/themes/mbi-theme/assets/gfx/Img/nc/slide_07_nc_start.jpg" alt="slide img">
         </div>
 
 		<div class="infoWrapper">
