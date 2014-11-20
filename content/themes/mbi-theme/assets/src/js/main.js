@@ -133,7 +133,15 @@ function scrollUp(){
 	});
 }
 
+function imgFadeOut(){
 
+	// setTimeout(function() {
+
+		$('.fadeOutImg').css('opacity', 0);
+
+	// }, 2000);
+
+}
 
 
 	domReady(function () {
@@ -142,6 +150,7 @@ function scrollUp(){
 		initialSwiper();
 		scrollDown();
 		scrollUp();
+		imgFadeOut();
 
 	});
 });

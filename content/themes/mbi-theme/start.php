@@ -31,6 +31,10 @@ get_header(); ?>
 
 	<div class="startpage__site-wrapper box">
 
+        <div class="fadeOutImg">
+            <img class="image imageFadeOut" src="content/themes/mbi-theme/assets/gfx/Img/nc/slide_07_nc_f.png" alt="slide img">
+        </div>
+
 		<div class="infoWrapper">
 
 			<div class="logo is_visible"></div>
@@ -202,33 +206,21 @@ get_header(); ?>
                 <div class="swiper-wrapper">
             <!--First Slide-->
                     <div class="swiper-slide">
-                        <img class="image img__slide1" src="content/themes/mbi-theme/assets/gfx/Img/slide_01_s-s.jpg" alt="slide img">
+                        <img class="image img__slide1" src="content/themes/mbi-theme/assets/gfx/Img/nc/slide_01_nc_f.png" alt="slide img">
                     </div>
 
             <!--Second Slide-->
                     <div class="swiper-slide">
-                        <img class="image img__slide2" src="content/themes/mbi-theme/assets/gfx/Img/slide_02_s-s.jpg" alt="slide img">
+                        <img class="image img__slide2" src="content/themes/mbi-theme/assets/gfx/Img/nc/slide_02_nc_f.png" alt="slide img">
                     </div>
 
             <!--Third Slide-->
-                    <!-- <div class="swiper-slide">
-                        <img class="image img__slide3" src="content/themes/mbi-theme/assets/gfx/Img/slide_03_s-s.jpg" alt="slide img">
-                    </div> -->
+                    <div class="swiper-slide">
+                        <img class="image img__slide4" src="content/themes/mbi-theme/assets/gfx/Img/nc/slide_04_nc_f.png" alt="slide img">
+                    </div>
             <!--Fourth Slide-->
                     <div class="swiper-slide">
-                        <img class="image img__slide4" src="content/themes/mbi-theme/assets/gfx/Img/slide_04_s-s.jpg" alt="slide img">
-                    </div>
-            <!--Fifth Slide-->
-                    <!-- <div class="swiper-slide">
-                        <img class="image img__slide5" src="content/themes/mbi-theme/assets/gfx/Img/slide_05_s-s.jpg" alt="slide img">
-                    </div> -->
-            <!--Sixths Slide-->
-                    <!-- <div class="swiper-slide">
-                        <img class="image img__slide6" src="content/themes/mbi-theme/assets/gfx/Img/slide_06_s-s.jpg" alt="slide img">
-                    </div> -->
-            <!--Seventh Slide-->
-                    <div class="swiper-slide">
-                        <img class="image img__slide7" src="content/themes/mbi-theme/assets/gfx/Img/slide_07_s-s.jpg" alt="slide img">
+                        <img class="image img__slide7" src="content/themes/mbi-theme/assets/gfx/Img/nc/slide_07_nc_f.png" alt="slide img">
                     </div>
             <!--Etc..-->
             <!--Etc..-->
