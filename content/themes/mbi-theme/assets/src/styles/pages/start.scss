@@ -10,7 +10,7 @@ html, body{
 	width:100%;
 	height:100%;
 	background-color: $black;
-	border: em(10px) solid $white;
+	// border: em(10px) solid $white;
 	position: relative;
 
 	// &:before{
@@ -25,6 +25,27 @@ html, body{
 	// 	border:2px solid orange;
 	// }
 }
+
+.slider__site-wrapper{
+	border: 0.625em solid #f1f0eb;
+	outline: 1px solid #000001;
+	outline-offset: -5px;
+}
+.bio__site-wrapper{
+	border: 0.625em solid #f1f0eb;
+	outline: 1px solid #000001;
+	outline-offset: -5px;
+}
+.startpage__site-wrapper{
+	width: 100%;
+	height: 100%;
+	border: 0.625em solid #000001;
+
+	outline: 1px solid #ffffff;
+	outline-offset: -5px;
+}
+
+
 .infoWrapper{
 	width: em(300px);
 	height: em(200px);
@@ -68,7 +89,8 @@ html, body{
 	.contactData,
 	.openTimes,
 	.furtherInformation{
-		width:em(300px);
+		// width:em(300px);
+		width:19.75em;
 		font-family: $base-font-family;
 		color: $white;
 		font-size: em(14px);
@@ -102,23 +124,31 @@ html, body{
 //-------------------------------------------------------------
 
 .fadeOutImg{
+
+		width: 100%;
+		height: 100%;
+		background: url("assets/gfx/Img/nc/slide_07_nc_start.jpg") center center no-repeat;
+		background-size: contain;
+		background-attachment: fixed;
+
+
 	pointer-events:none;
-	width: 100%;
-	height: 100%;
-	z-index: 2;
-	position: absolute;
+	// width: 100%;
+	// height: 100%;
+	// z-index: 2;
+	// position: absolute;
 	z-index:9999;
-	opacity:1;
-	transition:opacity 10s ease-in-out;
-	.imageFadeOut{
+	opacity:0;
+	transition:opacity 4s ease-in-out 2s;
+	// .imageFadeOut{
 
-		width: 70%;
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
+	// 	width: 70%;
+	// 	position: absolute;
+	// 	left: 50%;
+	// 	top: 50%;
+	// 	transform: translate(-50%, -50%);
 
-	}
+	// }
 }
 
 

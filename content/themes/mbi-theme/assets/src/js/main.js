@@ -137,7 +137,7 @@ function imgFadeOut(){
 
 	// setTimeout(function() {
 
-		$('.fadeOutImg').css('opacity', 0);
+		$('.fadeOutImg').css('opacity', 1);
 
 	// }, 2000);
 
